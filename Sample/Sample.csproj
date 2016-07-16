@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Excersises\Search2\HeuristicTSP.cs" />
     <Compile Include="Excersises\Search\GameOfNSample.cs" />
     <Compile Include="Excersises\IExcersice.cs" />
     <Compile Include="Excersises\Search\GeometryPath.cs" />

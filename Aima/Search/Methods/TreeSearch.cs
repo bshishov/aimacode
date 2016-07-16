@@ -9,20 +9,22 @@ namespace Aima.Search.Methods
     {
         public ISolution<TState> Search(IProblem<TState> problem)
         {
-            var fringe = new TQueue();
-            fringe.Put(new TreeNode<TState>(problem.InitialState));
+            var frontier = new TQueue();
+            frontier.Put(new TreeNode<TState>(problem.InitialState));
 
             while (true)
             {
-                if (fringe.IsEmpty)
+                if (frontier.IsEmpty)
                     return null;
 
-                var node = fringe.Take();
+                var node = frontier.Take();
                 if(problem.GoalTest(node.State))
                     return new Solution<TState>(node);
-
-                fringe.Put(SearchUtilities.Expand(node, problem));
+                
+                frontier.Put(SearchUtilities.Expand(node, problem));
             }
         }
+
+
     }
 }

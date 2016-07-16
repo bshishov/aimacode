@@ -61,7 +61,15 @@
     <Compile Include="AgentSystems\Vacuum\Simple\SimpleStateLessReflexVacuumAgent.cs" />
     <Compile Include="AgentSystems\Vacuum\VacuumActions.cs" />
     <Compile Include="AgentSystems\Vacuum\Simple\SimpleVacuumEnviroment.cs" />
+    <Compile Include="Search\Domain\ObstaclesProblem.cs" />
+    <Compile Include="Search\Domain\RiverProblem.cs" />
+    <Compile Include="Search\Domain\SlidingTilesProblem.cs" />
+    <Compile Include="Search\Domain\TravelingSalespersonProblem.cs" />
+    <Compile Include="Search\Domain\VacuumProblem.cs" />
+    <Compile Include="Search\Domain\WebCrawlProblem.cs" />
     <Compile Include="Search\ErrorFixingSolvingAgent.cs" />
+    <Compile Include="Search\HeuristicSearch.cs" />
+    <Compile Include="Search\Methods\AStarSearch.cs" />
     <Compile Include="Search\Methods\BroadGraphSearch.cs" />
     <Compile Include="Search\Methods\BroadSearch.cs" />
     <Compile Include="Search\Methods\DepthGraphSearch.cs" />
@@ -71,6 +79,7 @@
     <Compile Include="Search\ISolution.cs" />
     <Compile Include="Search\ITreeNode.cs" />
     <Compile Include="Search\Methods\GraphSearch.cs" />
+    <Compile Include="Search\HeuristicTreeNode.cs" />
     <Compile Include="Search\Methods\IterativeDeepingSearch.cs" />
     <Compile Include="Search\Methods\UniformCostSearch.cs" />
     <Compile Include="Search\Queue\FIFOQueue.cs" />
@@ -83,6 +92,7 @@
     <Compile Include="Search\TreeNode.cs" />
     <Compile Include="Search\Methods\TreeSearch.cs" />
     <Compile Include="Utilities\ArrayUtils.cs" />
+    <Compile Include="Utilities\GraphUtilities.cs" />
     <Compile Include="Utilities\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AgentSystems\Vacuum\Simple\SimpleReflexVacuumAgent.cs" />
@@ -91,6 +101,7 @@
     <Compile Include="Utilities\Shape.cs" />
     <Compile Include="Utilities\GeometryUtilities.cs" />
     <Compile Include="Utilities\Vector2.cs" />
+    <Compile Include="Utilities\WeightedGraph.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

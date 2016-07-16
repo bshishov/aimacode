@@ -1,5 +1,6 @@
 ﻿using System;
 using Sample.Excersises.Search;
+using Sample.Excersises.Search2;
 
 namespace Sample
 {
@@ -14,7 +15,8 @@ namespace Sample
             //new WebCrawl().Run();
             //new GeometryPath().Run();
             //new Robot().Run();
-            new OptimalVacuum().Run();
+            //new OptimalVacuum().Run();
+            new HeuristicTSP().Run();
 
             Console.ReadKey();
         }

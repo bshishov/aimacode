@@ -23,8 +23,9 @@ namespace Aima.AgentSystems.Vacuum.Grid
         
         private int _step;
         private readonly Random _random;
+        private bool _vizualize;
 
-        public GridVacuumEnviroment(IAgent<GridVacuumPerception> agent, int seed = 0)
+        public GridVacuumEnviroment(IAgent<GridVacuumPerception> agent, int seed = 0, bool visualize = false)
         {
             State = new GridVacuumObservableState
             {
@@ -34,7 +35,9 @@ namespace Aima.AgentSystems.Vacuum.Grid
             Agent = agent;
             AgentScore = 0;
 
-            if(seed != 0)
+            _vizualize = visualize;
+
+            if (seed != 0)
                 _random = new Random(seed);
             else
                 _random = new Random();
@@ -85,7 +88,8 @@ namespace Aima.AgentSystems.Vacuum.Grid
                     AgentScore -= DirtCellPenalty;
             }
 
-            //Visualize(action);
+            if(_vizualize)
+                Visualize(action);
 
             _step++;
         }
