@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{00E7F07A-F208-4008-9B70-9485851E0E23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aima</RootNamespace>
+    <AssemblyName>Aima</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgentSystems\IAction.cs" />
+    <Compile Include="AgentSystems\IAgent.cs" />
+    <Compile Include="AgentSystems\ISingleAgentEnviroment.cs" />
+    <Compile Include="AgentSystems\IPerception.cs" />
+    <Compile Include="AgentSystems\IRule.cs" />
+    <Compile Include="AgentSystems\IState.cs" />
+    <Compile Include="AgentSystems\Agents\ModelBasedReflexAgent.cs" />
+    <Compile Include="AgentSystems\Agents\SimpleReflexAgent.cs" />
+    <Compile Include="AgentSystems\Agents\TableDrivenAgent.cs" />
+    <Compile Include="AgentSystems\Rule.cs" />
+    <Compile Include="AgentSystems\Vacuum\Grid\CellState.cs" />
+    <Compile Include="AgentSystems\Vacuum\Grid\GridRandomVacuumAgent.cs" />
+    <Compile Include="AgentSystems\Vacuum\Grid\GridVacuumEnviroment.cs" />
+    <Compile Include="AgentSystems\Vacuum\Grid\GridVacuumModelAgent.cs" />
+    <Compile Include="AgentSystems\Vacuum\Grid\GridVacuumObservableState.cs" />
+    <Compile Include="AgentSystems\Vacuum\Grid\GridVacuumPerception.cs" />
+    <Compile Include="AgentSystems\Vacuum\Grid\GridRandomVacuumState.cs" />
+    <Compile Include="AgentSystems\Vacuum\IVacuumEnviroment.cs" />
+    <Compile Include="AgentSystems\Vacuum\Simple\SimpleStateLessReflexVacuumAgent.cs" />
+    <Compile Include="AgentSystems\Vacuum\VacuumActions.cs" />
+    <Compile Include="AgentSystems\Vacuum\Simple\SimpleVacuumEnviroment.cs" />
+    <Compile Include="Search\ErrorFixingSolvingAgent.cs" />
+    <Compile Include="Search\Methods\BroadGraphSearch.cs" />
+    <Compile Include="Search\Methods\BroadSearch.cs" />
+    <Compile Include="Search\Methods\DepthGraphSearch.cs" />
+    <Compile Include="Search\Methods\DepthLimitedSearch.cs" />
+    <Compile Include="Search\Methods\DepthSearch.cs" />
+    <Compile Include="Search\ISearch.cs" />
+    <Compile Include="Search\ISolution.cs" />
+    <Compile Include="Search\ITreeNode.cs" />
+    <Compile Include="Search\Methods\GraphSearch.cs" />
+    <Compile Include="Search\Methods\IterativeDeepingSearch.cs" />
+    <Compile Include="Search\Methods\UniformCostSearch.cs" />
+    <Compile Include="Search\Queue\FIFOQueue.cs" />
+    <Compile Include="Search\IProblem.cs" />
+    <Compile Include="Search\Queue\IQueue.cs" />
+    <Compile Include="Search\Queue\LIFOQueue.cs" />
+    <Compile Include="Search\SearchUtilities.cs" />
+    <Compile Include="Search\SImpleProblemSolvingAgent.cs" />
+    <Compile Include="Search\Solution.cs" />
+    <Compile Include="Search\TreeNode.cs" />
+    <Compile Include="Search\Methods\TreeSearch.cs" />
+    <Compile Include="Utilities\ArrayUtils.cs" />
+    <Compile Include="Utilities\Point.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AgentSystems\Vacuum\Simple\SimpleReflexVacuumAgent.cs" />
+    <Compile Include="AgentSystems\SimpleAction.cs" />
+    <Compile Include="AgentSystems\Vacuum\Simple\SimpleVacuumPerception.cs" />
+    <Compile Include="Utilities\Shape.cs" />
+    <Compile Include="Utilities\GeometryUtilities.cs" />
+    <Compile Include="Utilities\Vector2.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
