@@ -10,23 +10,23 @@ namespace Aima.Search.Methods
     {
         public ISolution<TState> Search(IProblem<TState> problem)
         {
-            var closed = new HashSet<TState>();
-            var fringe = new TQueue();
-            fringe.Put(new TreeNode<TState>(problem.InitialState));
+            var closedSet = new HashSet<TState>();
+            var openSet = new TQueue();
+            openSet.Put(new TreeNode<TState>(problem.InitialState));
 
             while (true)
             {
-                if (fringe.IsEmpty)
+                if (openSet.IsEmpty)
                     return null;
 
-                var node = fringe.Take();
+                var node = openSet.Take();
                 if (problem.GoalTest(node.State))
                     return new Solution<TState>(node);
 
-                if (!closed.Contains(node.State))
+                if (!closedSet.Contains(node.State))
                 {
-                    closed.Add(node.State);
-                    fringe.Put(SearchUtilities.Expand(node, problem));
+                    closedSet.Add(node.State);
+                    openSet.Put(SearchUtilities.Expand(node, problem));
                 }
             }
         }

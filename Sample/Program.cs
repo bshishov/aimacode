@@ -15,7 +15,7 @@ namespace Sample
             //new SlidingTiles().Run();
             //new TravellingSalesPerson().Run();
             //new WebCrawl().Run();
-            //new GeometryPath().Run();
+            new GeometryPath().Run();
             //new Robot().Run();
             //new OptimalVacuum().Run();
 

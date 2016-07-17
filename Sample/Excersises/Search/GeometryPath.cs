@@ -1,5 +1,4 @@
-﻿using System;
-using Aima.Search.Domain;
+﻿using Aima.Search.Domain;
 using Aima.Search.Methods;
 
 namespace Sample.Excersises.Search
@@ -8,21 +7,11 @@ namespace Sample.Excersises.Search
     {
         public void Run()
         {
-            var searchMethod = new UniformCostSearch<RobotState>();
-            var solution = searchMethod.Search(new ObstaclesProblem());
+            var problem = new ObstaclesProblem();
 
-            if (solution != null)
-            {
-                Console.WriteLine("SOLUTION FOUND!");
-                foreach (var action in solution.Steps)
-                {
-                    Console.WriteLine(action.Name);
-                }
-            }
-            else
-            {
-                Console.WriteLine("No solution");
-            }
+            Measure.SearchPerformance(problem, new UniformCostSearch<RobotState>());
+            Measure.SearchPerformance(problem, new BroadSearch<RobotState>());
+            Measure.SearchPerformance(problem, new DepthGraphSearch<RobotState>());
         }
     }
 }

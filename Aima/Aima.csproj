@@ -82,6 +82,7 @@
     <Compile Include="Search\HeuristicTreeNode.cs" />
     <Compile Include="Search\HeuristicComparer.cs" />
     <Compile Include="Search\Methods\IterativeDeepingSearch.cs" />
+    <Compile Include="Search\TreeNodeCostComparer.cs" />
     <Compile Include="Search\Methods\UniformCostSearch.cs" />
     <Compile Include="Search\Queue\FIFOQueue.cs" />
     <Compile Include="Search\IProblem.cs" />

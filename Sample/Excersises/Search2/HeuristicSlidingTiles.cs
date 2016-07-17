@@ -178,6 +178,8 @@ namespace Sample.Excersises.Search2
             var problem = new SlidingTilesProblem(3, 123124);
             //var problem = new SlidingTilesProblem(4, 1337);
 
+            Measure.SearchPerformance(problem, new BroadGraphSearch<SlidingTilesState>(), "Broad graph search");
+
             Measure.SearchPerformance(problem, new AStarSearch<SlidingTilesState>(SlidingTilesHeuristics.ManhattanDistance), "Manhattan Distance heuristic");
             Measure.SearchPerformance(problem, new AStarSearch<SlidingTilesState>(SlidingTilesHeuristics.H1H2Compound), "Compound heuristics");
             Measure.SearchPerformance(problem, new AStarSearch<SlidingTilesState>(SlidingTilesHeuristics.NMaxSwap), "NMax Swap (Gaschnig's) heuristic");
