@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Aima.AgentSystems;
 using Aima.Utilities;
 
@@ -47,14 +48,20 @@ namespace Aima.Search.Domain
 
         public override int GetHashCode()
         {
-            return CityId.GetHashCode();
+            var sb = new StringBuilder();
+            sb.Append((char) CityId);
+            foreach (var u in Visited)
+            {
+                sb.Append((char)u);
+            }
+            return sb.GetHashCode();
         }
 
         public override bool Equals(object obj)
         {
             var s = obj as TravelingSalesPersonState;
             if (s != null)
-                return CityId.Equals(s.CityId);
+                return GetHashCode().Equals(s.GetHashCode());
             return base.Equals(obj);
         }
 

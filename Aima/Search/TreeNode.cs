@@ -1,3 +1,4 @@
+using System.Text;
 using Aima.AgentSystems;
 
 namespace Aima.Search
@@ -28,6 +29,11 @@ namespace Aima.Search
             PathCost = parent.PathCost + stepCost;
             State = state;
             Depth = parent.Depth + 1;
+        }
+
+        public override string ToString()
+        {
+            return $"[{PathCost}] {State}";
         }
     }
 }

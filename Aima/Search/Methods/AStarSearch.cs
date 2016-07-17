@@ -1,39 +1,67 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Aima.AgentSystems;
 using Aima.Search.Queue;
 
 namespace Aima.Search.Methods
 {
-    public class AStarSearch<TProblem, TState> : HeuristicSearch<TProblem, TState>
+    /// <summary>
+    /// A* search implementation with closed set (like GraphSearch)
+    /// </summary>
+    /// <typeparam name="TState"></typeparam>
+    public class AStarSearch<TState> : HeuristicSearch<TState>
         where TState : IState
-        where TProblem : IProblem<TState>
     {
-        public AStarSearch(IHeuristic<TProblem, TState> heuristic) : base(heuristic)
+
+        public double Weight = 1.0;
+
+        public AStarSearch(IHeuristic<TState> heuristic) : base(heuristic)
+        {
+        }
+
+        public AStarSearch(Func<TState, double> heuristic) : base(heuristic)
         {
         }
 
         public override ISolution<TState> Search(IProblem<TState> problem)
         {
-            var frontier = new List<HeuristicTreeNode<TState>> {new HeuristicTreeNode<TState>(problem.InitialState)};
+            var openSet = new SortedQueue<HeuristicTreeNode<TState>>(new HeuristicComparer<TState>());
+            openSet.Put( new HeuristicTreeNode<TState>(problem.InitialState));
+            var closedSet = new HashSet<TState>();
 
             while (true)
             {
-                if (frontier.Count == 0)
+                if (openSet.IsEmpty)
                     return null;
-                
-                var node = frontier.First();
-                frontier.RemoveAt(0);
+
+                var node = openSet.Take();
 
                 if (problem.GoalTest(node.State))
                     return new Solution<TState>(node);
-                
-                frontier.AddRange(Expand(node, (TProblem)problem));
-                frontier.Sort((n1, n2) => n1.Heuristic.CompareTo(n2.Heuristic));
+
+                closedSet.Add(node.State);
+
+                foreach (var successor in Expand(node, problem))
+                {
+                    // check whether node with this state is existed
+                    var existed = openSet.FirstOrDefault(s => s.State.Equals(successor.State));
+                    
+                    // if node is explored and not existed
+                    if (!closedSet.Contains(successor.State) && existed == null)
+                        openSet.Put(successor);
+                    // if node is existed in frontier and its more expensive that current node 
+                    // than replace it
+                    else if (existed != null && existed.PathCost > successor.PathCost)
+                    {
+                        openSet.Remove(existed);
+                        openSet.Put(successor);
+                    }
+                }
             }
         }
 
-        private IEnumerable<HeuristicTreeNode<TState>> Expand(ITreeNode<TState> node, TProblem problem)
+        private IEnumerable<HeuristicTreeNode<TState>> Expand(ITreeNode<TState> node, IProblem<TState> problem)
         {
             var successors = problem.SuccessorFn(node.State);
             if (successors == null)
@@ -46,7 +74,7 @@ namespace Aima.Search.Methods
                 var newNode = new HeuristicTreeNode<TState>(node, state, action,
                     problem.Cost(action, node.State, state))
                 {
-                    Heuristic = node.PathCost + ComputeHeuristic(problem, state)
+                    Heuristic = (2 - Weight) * node.PathCost + Weight * ComputeHeuristic(state)
                 };
                 yield return newNode;
             }

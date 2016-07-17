@@ -1,30 +1,34 @@
-﻿using Aima.AgentSystems;
+﻿using System;
+using Aima.AgentSystems;
 
 namespace Aima.Search
 {
-    public interface IHeuristic<in TProblem, in TState>
+    public interface IHeuristic<in TState>
          where TState : IState
-         where TProblem : IProblem<TState>
     {
-        double Compute(TProblem problem, TState state);
+        double Compute(TState state);
     }
 
-    public abstract class HeuristicSearch<TProblem, TState> : ISearch<TState>
+    public abstract class HeuristicSearch<TState> : ISearch<TState>
         where TState : IState
-        where TProblem : IProblem<TState>
     {
-        private readonly IHeuristic<TProblem, TState> _heuristic;
+        private readonly Func<TState, double> _func;
 
-        protected HeuristicSearch(IHeuristic<TProblem, TState> heuristic)
+        protected HeuristicSearch(IHeuristic<TState> heuristic)
         {
-            _heuristic = heuristic;
+            _func = heuristic.Compute;
+        }
+
+        protected HeuristicSearch(Func<TState, double> heuristic)
+        {
+            _func = heuristic;
         }
 
         public abstract ISolution<TState> Search(IProblem<TState> problem);
 
-        public double ComputeHeuristic(TProblem problem, TState state)
+        public double ComputeHeuristic(TState state)
         {
-            return _heuristic.Compute(problem, state);
+            return _func.Invoke(state);
         }
     }
 }

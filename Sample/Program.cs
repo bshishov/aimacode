@@ -9,14 +9,19 @@ namespace Sample
         static void Main(string[] args)
         {
             //new Vaccuum().Run();
+
+            // SEARCH
             //new RiverSample().Run();
-            //new GameOfNSample().Run();
+            //new SlidingTiles().Run();
             //new TravellingSalesPerson().Run();
             //new WebCrawl().Run();
             //new GeometryPath().Run();
             //new Robot().Run();
             //new OptimalVacuum().Run();
-            new HeuristicTSP().Run();
+
+            // HEURISTIC
+            //new HeuristicTSP().Run();
+            new HeuristicSlidingTiles().Run();
 
             Console.ReadKey();
         }

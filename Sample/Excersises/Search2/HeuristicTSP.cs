@@ -1,40 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Aima.Search;
 using Aima.Search.Domain;
 using Aima.Search.Methods;
 using Aima.Utilities;
+using Sample.Excersises.Search;
 
 namespace Sample.Excersises.Search2
 {
     class HeuristicTSP : IExcersice
     {
-        class TspMstHeuristic : IHeuristic<TravelingSalespersonProblem, TravelingSalesPersonState>
+        class TspMstHeuristic : IHeuristic<TravelingSalesPersonState>
         {
-            public double Compute(TravelingSalespersonProblem problem, TravelingSalesPersonState state)
+            private readonly TravelingSalespersonProblem _problem;
+
+            public TspMstHeuristic(TravelingSalespersonProblem problem)
             {
-                var remainGraph = problem.Graph.DetachedVertices(state.Visited.ToArray());
+                _problem = problem;
+            }
+
+            public double Compute(TravelingSalesPersonState state)
+            {
+                var remainGraph = _problem.Graph.DetachedVertices(state.Visited.ToArray());
                 return GraphUtilities.KruskalMST(remainGraph).TotalLength();
             }
         }
 
         public void Run()
         {
-            var problem = new TravelingSalespersonProblem(20, 1);
-            var searchMethod = new AStarSearch<TravelingSalespersonProblem, TravelingSalesPersonState>(new TspMstHeuristic());
-            var solution = searchMethod.Search(problem);
+            var problem = new TravelingSalespersonProblem(10, 1337);
 
-            if (solution != null)
-            {
-                foreach (var action in solution.Steps)
-                {
-                    Console.WriteLine(action.Name);
-                }
-            }
-            else
-            {
-                Console.WriteLine("No solution");
-            }
+            Measure.SearchPerformance(problem, new AStarSearch<TravelingSalesPersonState>(new TspMstHeuristic(problem)));
         }
     }
 }

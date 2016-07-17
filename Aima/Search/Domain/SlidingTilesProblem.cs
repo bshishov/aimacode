@@ -16,8 +16,8 @@ namespace Aima.Search.Domain
 
     public class SlidingTilesState : IState
     {
-        public static int N = 4;
-        public int[] Values = new int[N * N];
+        public readonly int N;
+        public int[] Values;
 
         public int ZeroX = 0;
         public int ZeroY = 0;
@@ -30,6 +30,12 @@ namespace Aima.Search.Domain
                 ZeroX = value % N;
                 ZeroY = value / N;
             }
+        }
+
+        public SlidingTilesState(int n)
+        {
+            N = n;
+            Values = new int[N*N];
         }
 
         public SlidingTilesState FromAction(IAction action)
@@ -54,14 +60,14 @@ namespace Aima.Search.Domain
             return s;
         }
 
-        private static int ToIndex(int x, int y)
+        private int ToIndex(int x, int y)
         {
             return y * N + x;
         }
 
         private SlidingTilesState Clone()
         {
-            var newState = new SlidingTilesState()
+            var newState = new SlidingTilesState(N)
             {
                 ZeroX = ZeroX,
                 ZeroY = ZeroY,
@@ -77,7 +83,7 @@ namespace Aima.Search.Domain
             {
                 for (var j = 0; j < N; j++)
                 {
-                    sb.AppendFormat("{0}\t", Values[ToIndex(j, i)]);
+                    sb.AppendFormat("{0} ", Values[ToIndex(j, i)]);
                 }
 
                 sb.Append("\n");
@@ -106,18 +112,22 @@ namespace Aima.Search.Domain
 
     public class SlidingTilesProblem : IProblem<SlidingTilesState>
     {
+        public readonly int N;
         public SlidingTilesState InitialState { get; }
+
+        public SlidingTilesProblem(int n = 3, int seed = -1)
+        {
+            N = n;
+            InitialState = RandomState(n, seed);
+        }
 
         public SlidingTilesProblem()
         {
-            InitialState = new SlidingTilesState
+            N = 3;
+            InitialState = new SlidingTilesState(N)
             {
-
-                Values = new[] { 7, 2, 4, 5, 0, 6, 8, 3, 1, 9, 10, 11, 12, 13, 14, 15 },
-                //Values = new[] { 7, 2, 4, 5, 0, 6, 8, 3, 1 },
-                //Values = new[] { 3, 2, 1, 0 },
-                ZeroX = 1,
-                ZeroY = 1
+                Values = new[] { 7, 2, 4, 5, 0, 6, 8, 3, 1 },
+                ZeroIdx = 5,
             };
         }
 
@@ -125,13 +135,13 @@ namespace Aima.Search.Domain
         {
             var successors = new List<Tuple<IAction, SlidingTilesState>>();
 
-            if (state.ZeroX < SlidingTilesState.N - 1)
+            if (state.ZeroX < state.N - 1)
                 successors.Add(new Tuple<IAction, SlidingTilesState>(SlidingTilesActions.Right, state.FromAction(SlidingTilesActions.Right)));
 
             if (state.ZeroX > 0)
                 successors.Add(new Tuple<IAction, SlidingTilesState>(SlidingTilesActions.Left, state.FromAction(SlidingTilesActions.Left)));
 
-            if (state.ZeroY < SlidingTilesState.N - 1)
+            if (state.ZeroY < state.N - 1)
                 successors.Add(new Tuple<IAction, SlidingTilesState>(SlidingTilesActions.Bottom, state.FromAction(SlidingTilesActions.Bottom)));
 
             if (state.ZeroY > 0)
@@ -158,6 +168,27 @@ namespace Aima.Search.Domain
         public double Cost(IAction action, SlidingTilesState @from, SlidingTilesState to)
         {
             return 1;
+        }
+
+        public static SlidingTilesState RandomState(int n, int seed = -1)
+        {
+            var rnd = new Random(seed);
+            if(seed == -1)
+                rnd = new Random();
+            var defVals = new int[n * n];
+            for (var i = 0; i < defVals.Length; i++)
+                defVals[i] = i;
+            var rVals = defVals.OrderBy(x => rnd.Next()).ToArray();
+
+            var id = Array.IndexOf(rVals, 0);
+
+            // TODO: CHECK WHETHER IT SOLVABLE
+
+            return new SlidingTilesState(n)
+            {
+                Values = rVals,
+                ZeroIdx = id
+            };
         }
     }
 }

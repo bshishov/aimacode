@@ -80,12 +80,14 @@
     <Compile Include="Search\ITreeNode.cs" />
     <Compile Include="Search\Methods\GraphSearch.cs" />
     <Compile Include="Search\HeuristicTreeNode.cs" />
+    <Compile Include="Search\HeuristicComparer.cs" />
     <Compile Include="Search\Methods\IterativeDeepingSearch.cs" />
     <Compile Include="Search\Methods\UniformCostSearch.cs" />
     <Compile Include="Search\Queue\FIFOQueue.cs" />
     <Compile Include="Search\IProblem.cs" />
     <Compile Include="Search\Queue\IQueue.cs" />
     <Compile Include="Search\Queue\LIFOQueue.cs" />
+    <Compile Include="Search\Queue\SortedQueue.cs" />
     <Compile Include="Search\SearchUtilities.cs" />
     <Compile Include="Search\SImpleProblemSolvingAgent.cs" />
     <Compile Include="Search\Solution.cs" />
