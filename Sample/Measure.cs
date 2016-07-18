@@ -2,17 +2,18 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using Aima.Search;
+using Aima.Search.Metric;
 
 namespace Sample
 {
     public static class Measure
     {
-        public static void SearchPerformance<TState>(IProblem<TState> problem, ISearch<TState> method, string name="")
+        public static void SearchPerformance<TState>(IProblem<TState> problem, ISearch<TState> method, string name="", ISeachMetric<TState> metric = null)
         {
             if(!string.IsNullOrEmpty(name))
                 Console.WriteLine(name);
 
-            Console.WriteLine("Solving problem {0} using method {1}", problem.GetType().Name, method.GetType().Name);
+            Console.WriteLine("Solving problem {0} using {1} method", problem.GetType().Name, method.GetType().Name);
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             var solution = method.Search(problem);
@@ -21,6 +22,8 @@ namespace Sample
             if (solution != null)
             {
                 Console.WriteLine("Solution found!");
+                if(metric != null)
+                    Console.WriteLine("Metric:\t{0:F} ({1})", metric.Compute(problem, solution), metric.GetType().Name);
                 Console.WriteLine("Time:\t{0}", stopwatch.Elapsed);
                 Console.WriteLine("Cost:\t{0:F}", solution.ParentNode.PathCost);
 
@@ -31,6 +34,8 @@ namespace Sample
                 Console.WriteLine("State:");
                 Console.WriteLine(solution.ParentNode.State);
 
+
+                Console.WriteLine("\nPath:");
                 if (stepsCount < 100)
                 {
                     foreach (var action in solution.Steps)

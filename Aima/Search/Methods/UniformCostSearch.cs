@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Aima.AgentSystems;
 using Aima.Search.Queue;
 
 namespace Aima.Search.Methods
@@ -9,6 +8,7 @@ namespace Aima.Search.Methods
     {
         public ISolution<TState> Search(IProblem<TState> problem)
         {
+            // TODO: OPTIMIZE PERFORMANCE!!!
             var openSet = new SortedQueue<ITreeNode<TState>>(new TreeNodeCostComparer<TState>());
             openSet.Put(new TreeNode<TState>(problem.InitialState));
             var closedSet = new HashSet<TState>();

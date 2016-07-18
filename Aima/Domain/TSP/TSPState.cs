@@ -8,9 +8,9 @@ namespace Aima.Domain.TSP
         public List<uint> Path;
         public uint CityId => Path[Path.Count - 1];
 
-        public TSPState(uint startFrom = 0)
+        public TSPState()
         {
-            Path = new List<uint>() { startFrom };
+            Path = new List<uint>();
         }
 
         public TSPState(List<uint> path)
@@ -21,7 +21,6 @@ namespace Aima.Domain.TSP
         public override int GetHashCode()
         {
             var sb = new StringBuilder();
-            sb.Append((char)CityId);
             foreach (var u in Path)
             {
                 sb.Append((char)u);

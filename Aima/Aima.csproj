@@ -51,6 +51,10 @@
     <Compile Include="AgentSystems\Agents\TableDrivenAgent.cs" />
     <Compile Include="AgentSystems\Rule.cs" />
     <Compile Include="Domain\Obstacles\RobotState.cs" />
+    <Compile Include="Domain\TSP\TspFitnessFunction.cs" />
+    <Compile Include="Search\Methods\Genetic\Operators\PmxOperator.cs" />
+    <Compile Include="Domain\TSP\TspGeneticTranslator.cs" />
+    <Compile Include="Domain\TSP\TSPMEtric.cs" />
     <Compile Include="Domain\Vaccum\Grid\CellState.cs" />
     <Compile Include="Domain\Vaccum\Grid\GridRandomVacuumAgent.cs" />
     <Compile Include="Domain\Vaccum\Grid\GridVacuumEnviroment.cs" />
@@ -81,6 +85,12 @@
     <Compile Include="Search\ErrorFixingSolvingAgent.cs" />
     <Compile Include="Search\HeuristicSearch.cs" />
     <Compile Include="Search\IHeuristic.cs" />
+    <Compile Include="Search\Methods\Genetic\Operators\DefaultCrossoverOperator.cs" />
+    <Compile Include="Search\Methods\Genetic\GeneticAlgorithm.cs" />
+    <Compile Include="Search\Methods\Genetic\Operators\ICrossoverOperator.cs" />
+    <Compile Include="Search\Methods\Genetic\IFitnessFunction.cs" />
+    <Compile Include="Search\Methods\Genetic\IGeneticTranslator.cs" />
+    <Compile Include="Search\Metric\ISeachMetric.cs" />
     <Compile Include="Search\Methods\AStarSearch.cs" />
     <Compile Include="Search\Methods\BroadGraphSearch.cs" />
     <Compile Include="Search\Methods\BroadSearch.cs" />
@@ -96,6 +106,8 @@
     <Compile Include="Search\Methods\HillClimbing.cs" />
     <Compile Include="Search\INodeExpander.cs" />
     <Compile Include="Search\Methods\IterativeDeepingSearch.cs" />
+    <Compile Include="Search\Metric\PathCostMetric.cs" />
+    <Compile Include="Search\Metric\StepsCountMetric.cs" />
     <Compile Include="Search\TreeNodeCostComparer.cs" />
     <Compile Include="Search\Methods\UniformCostSearch.cs" />
     <Compile Include="Search\Queue\FIFOQueue.cs" />

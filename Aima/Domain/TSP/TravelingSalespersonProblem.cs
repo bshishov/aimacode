@@ -28,7 +28,7 @@ namespace Aima.Domain.TSP
                 }
             }
 
-            InitialState = new TSPState(0);
+            InitialState = new TSPState();
         }
 
 
@@ -64,11 +64,13 @@ namespace Aima.Domain.TSP
 
         public bool GoalTest(TSPState state)
         {
-            return state.Path.Count == _cities.Length - 1;
+            return state.Path.Count == _cities.Length;
         }
 
         public double Cost(IAction action, TSPState @from, TSPState to)
         {
+            if (from.Path.Count == 0)
+                return 0;
             return Map.Distance(from.CityId, to.CityId);
         }
 
