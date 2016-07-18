@@ -1,4 +1,6 @@
-namespace Aima.AgentSystems.Vacuum.Grid
+using Aima.AgentSystems;
+
+namespace Aima.Domain.Vaccum.Grid
 {
     public class GridRandomVacuumState : IState
     {

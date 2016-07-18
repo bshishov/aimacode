@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
 using Aima.AgentSystems;
+using Aima.Search;
 
-namespace Aima.Search.Domain
+namespace Aima.Domain.WebCrawl
 {
     public class WebCrawlState : IState
     {

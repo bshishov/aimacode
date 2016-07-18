@@ -1,8 +1,7 @@
 ﻿using System;
-using Aima.AgentSystems.Vacuum;
-using Aima.AgentSystems.Vacuum.Grid;
+using Aima.Domain.Vaccum;
+using Aima.Domain.Vaccum.Grid;
 using Aima.Search;
-using Aima.Search.Domain;
 using Aima.Search.Methods;
 
 namespace Sample.Excersises.Search

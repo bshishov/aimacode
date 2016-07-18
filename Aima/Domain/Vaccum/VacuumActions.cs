@@ -1,4 +1,6 @@
-namespace Aima.AgentSystems.Vacuum
+using Aima.AgentSystems;
+
+namespace Aima.Domain.Vaccum
 {
     public static class VacuumActions
     {

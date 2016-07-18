@@ -2,28 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Aima.AgentSystems;
+using Aima.Search;
 using Aima.Utilities;
 
-namespace Aima.Search.Domain
+namespace Aima.Domain.Obstacles
 {
-    public class RobotState : IState
-    {
-        public int VertexId;
-
-        public override int GetHashCode()
-        {
-            return VertexId.GetHashCode();
-        }
-
-        public override bool Equals(object obj)
-        {
-            var s = obj as RobotState;
-            if (s != null)
-                return s.VertexId == VertexId;
-            return base.Equals(obj);
-        }
-    }
-
     public class ObstaclesProblem : IProblem<RobotState>
     {
         public RobotState InitialState { get; }

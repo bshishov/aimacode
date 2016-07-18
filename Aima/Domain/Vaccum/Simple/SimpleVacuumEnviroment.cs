@@ -1,6 +1,7 @@
 ﻿using System;
+using Aima.AgentSystems;
 
-namespace Aima.AgentSystems.Vacuum.Simple
+namespace Aima.Domain.Vaccum.Simple
 {
     public class SimpleVacuumEnviroment : ISingleAgentEnviroment<SimpleVacuumPerception>, IVacuumEnviroment
     {

@@ -3,7 +3,6 @@ using Aima.AgentSystems;
 namespace Aima.Search.Methods
 {
     public class DepthLimitedSearch<TState> : ISearch<TState>
-        where TState : IState
     {
         private readonly int _limit;
 

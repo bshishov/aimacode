@@ -1,4 +1,4 @@
-﻿namespace Aima.AgentSystems.Vacuum
+﻿namespace Aima.Domain.Vaccum
 {
     public interface IVacuumEnviroment
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Aima.AgentSystems;
-using Aima.AgentSystems.Vacuum;
-using Aima.AgentSystems.Vacuum.Grid;
+using Aima.Domain.Vaccum.Grid;
+using Aima.Search;
 
-namespace Aima.Search.Domain
+namespace Aima.Domain.Vaccum
 {
     public class VacuumProblem : IProblem<GridVacuumObservableState>
     {

@@ -3,7 +3,6 @@ using System;
 namespace Aima.AgentSystems
 {
     public class Rule<TState> : IRule<TState>
-        where TState : IState
     {
         public IAction Action { get; }
         public bool Matches(TState state)

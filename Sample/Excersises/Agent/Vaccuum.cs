@@ -1,6 +1,6 @@
 ﻿using System;
-using Aima.AgentSystems.Vacuum;
-using Aima.AgentSystems.Vacuum.Grid;
+using Aima.Domain.Vaccum;
+using Aima.Domain.Vaccum.Grid;
 
 namespace Sample.Excersises.Agent
 {

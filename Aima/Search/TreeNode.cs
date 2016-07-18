@@ -4,7 +4,6 @@ using Aima.AgentSystems;
 namespace Aima.Search
 {
     public class TreeNode<TState> : ITreeNode<TState>
-        where TState : IState
     {
         public TState State { get; }
         public ITreeNode<TState> ParentNode { get; }

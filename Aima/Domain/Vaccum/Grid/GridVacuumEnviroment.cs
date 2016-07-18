@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
-using Aima;
+using Aima.AgentSystems;
 using Aima.Utilities;
 
-namespace Aima.AgentSystems.Vacuum.Grid
+namespace Aima.Domain.Vaccum.Grid
 {
     public class GridVacuumEnviroment : ISingleAgentEnviroment<GridVacuumPerception>, IVacuumEnviroment
     {

@@ -27,6 +27,13 @@ namespace Aima.Utilities
             {
                 return $"{From}->{To} ({Weight:F})";
             }
+
+            public bool Equals(Edge e)
+            {
+                return From == e.From 
+                    && To == e.To 
+                    && Math.Abs(Weight - e.Weight) < 0.0000001;
+            }
         }
 
         public int VerticesCount { get; }
@@ -105,6 +112,16 @@ namespace Aima.Utilities
         public void RemoveEdge(Edge e)
         {
             SetEdgeWeight(e.From, e.To, 0.0);
+        }
+
+        public WeightedGraph Clone()
+        {
+            var g = new WeightedGraph(this.VerticesCount, Oriented);
+            foreach (var edge in AllEdges())
+            {
+                g.AddEdge(edge);
+            }
+            return g;
         }
     }
 }

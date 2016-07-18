@@ -4,7 +4,6 @@ using Aima.AgentSystems;
 namespace Aima.Search
 {
     public class Solution<TState> : ISolution<TState>
-        where TState : IState
     {
         private readonly List<IAction> _steps = new List<IAction>();
         private readonly List<TState> _states = new List<TState>();

@@ -4,7 +4,6 @@ using Aima.Search.Queue;
 namespace Aima.Search.Methods
 {
     public class TreeSearch<TState, TQueue> : ISearch<TState>
-        where TState : IState
         where TQueue : IQueue<ITreeNode<TState>>, new()
     {
         public ISolution<TState> Search(IProblem<TState> problem)

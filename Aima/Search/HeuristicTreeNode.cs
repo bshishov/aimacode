@@ -3,7 +3,6 @@
 namespace Aima.Search
 {
     public class HeuristicTreeNode<TState> : TreeNode<TState>
-        where TState : IState
     {
         public double Heuristic;
 

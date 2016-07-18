@@ -7,7 +7,6 @@ namespace Aima.Search
 {
     public abstract class SimpleProblemSolvingAgent<TState, TPerception> : IAgent<TPerception>
         where TPerception : IPerception
-        where TState : IState
     {
         private readonly ISearch<TState> _searchMethod;
         private IProblem<TState> _problem;

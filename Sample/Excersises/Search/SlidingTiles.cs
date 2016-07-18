@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Aima.Search.Domain;
+using Aima.Domain.SlidingTiles;
 using Aima.Search.Methods;
 
 namespace Sample.Excersises.Search

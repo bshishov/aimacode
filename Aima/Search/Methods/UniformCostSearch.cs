@@ -6,7 +6,6 @@ using Aima.Search.Queue;
 namespace Aima.Search.Methods
 {
     public class UniformCostSearch<TState> : ISearch<TState>
-        where TState : IState
     {
         public ISolution<TState> Search(IProblem<TState> problem)
         {

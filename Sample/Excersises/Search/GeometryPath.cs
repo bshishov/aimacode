@@ -1,4 +1,4 @@
-﻿using Aima.Search.Domain;
+﻿using Aima.Domain.Obstacles;
 using Aima.Search.Methods;
 
 namespace Sample.Excersises.Search

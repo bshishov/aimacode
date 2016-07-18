@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aima.AgentSystems;
 using Aima.AgentSystems.Agents;
 using Aima.Utilities;
 
-namespace Aima.AgentSystems.Vacuum.Grid
+namespace Aima.Domain.Vaccum.Grid
 {
     public class GridVacuumModelAgent : ModelBasedReflexAgent<GridVacuumPerception, GridVacuumNonObservableState>
     {

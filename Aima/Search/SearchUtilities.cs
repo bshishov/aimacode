@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using Aima.AgentSystems;
 
 namespace Aima.Search
 {
     public static class SearchUtilities
     {
         public static IEnumerable<ITreeNode<TState>> Expand<TState>(ITreeNode<TState> node, IProblem<TState> problem)
-            where TState : IState
         {
             var successors = problem.SuccessorFn(node.State);
             if (successors == null)

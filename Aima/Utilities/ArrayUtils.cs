@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Aima.AgentSystems.Vacuum.Grid;
+using Aima.Domain.Vaccum.Grid;
 
 namespace Aima.Utilities
 {

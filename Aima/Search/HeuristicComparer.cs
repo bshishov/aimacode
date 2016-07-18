@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Aima.AgentSystems;
 
 namespace Aima.Search
 {
@@ -8,7 +7,6 @@ namespace Aima.Search
     /// </summary>
     /// <typeparam name="TState"></typeparam>
     class HeuristicComparer<TState> : IComparer<HeuristicTreeNode<TState>>
-        where TState : IState
     {
         public int Compare(HeuristicTreeNode<TState> x, HeuristicTreeNode<TState> y)
         {

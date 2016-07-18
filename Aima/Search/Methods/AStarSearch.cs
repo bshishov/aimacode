@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Aima.AgentSystems;
 using Aima.Search.Queue;
 
 namespace Aima.Search.Methods
@@ -11,10 +10,13 @@ namespace Aima.Search.Methods
     /// </summary>
     /// <typeparam name="TState"></typeparam>
     public class AStarSearch<TState> : HeuristicSearch<TState>
-        where TState : IState
     {
-
         public double Weight = 1.0;
+
+        public AStarSearch(HeuristicNodeExpander<TState> expander) : base(expander)
+        {
+        }
+
 
         public AStarSearch(IHeuristic<TState> heuristic) : base(heuristic)
         {
@@ -58,25 +60,6 @@ namespace Aima.Search.Methods
                         openSet.Put(successor);
                     }
                 }
-            }
-        }
-
-        private IEnumerable<HeuristicTreeNode<TState>> Expand(ITreeNode<TState> node, IProblem<TState> problem)
-        {
-            var successors = problem.SuccessorFn(node.State);
-            if (successors == null)
-                yield break;
-
-            foreach (var successor in successors)
-            {
-                var action = successor.Item1;
-                var state = successor.Item2;
-                var newNode = new HeuristicTreeNode<TState>(node, state, action,
-                    problem.Cost(action, node.State, state))
-                {
-                    Heuristic = (2 - Weight) * node.PathCost + Weight * ComputeHeuristic(state)
-                };
-                yield return newNode;
             }
         }
     }

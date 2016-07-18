@@ -5,7 +5,6 @@ using Aima.AgentSystems;
 namespace Aima.Search
 {
     public interface IProblem<TState>
-        where TState : IState
     {
         TState InitialState { get; }
         IEnumerable<Tuple<IAction, TState>> SuccessorFn(TState state);

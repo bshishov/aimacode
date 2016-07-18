@@ -15,13 +15,13 @@ namespace Sample
             //new SlidingTiles().Run();
             //new TravellingSalesPerson().Run();
             //new WebCrawl().Run();
-            new GeometryPath().Run();
+            //new GeometryPath().Run();
             //new Robot().Run();
             //new OptimalVacuum().Run();
 
             // HEURISTIC
-            //new HeuristicTSP().Run();
-            new HeuristicSlidingTiles().Run();
+            new HeuristicTSP().Run();
+            //new HeuristicSlidingTiles().Run();
 
             Console.ReadKey();
         }

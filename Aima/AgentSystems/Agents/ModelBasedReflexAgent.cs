@@ -5,7 +5,6 @@ namespace Aima.AgentSystems.Agents
 {
     public abstract class ModelBasedReflexAgent<TPerception, TState> : IAgent<TPerception>
         where TPerception : IPerception
-        where TState : IState
     {
         protected List<IRule<TState>> Rules = new List<IRule<TState>>();
         private TState _lastState;

@@ -3,7 +3,6 @@
 namespace Aima.Search
 {
     public interface ITreeNode<out TState>
-        where TState : IState
     {
         TState State { get; }
         ITreeNode<TState> ParentNode { get; }

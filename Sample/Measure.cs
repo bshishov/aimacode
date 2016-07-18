@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
-using Aima.AgentSystems;
 using Aima.Search;
 
 namespace Sample
@@ -9,7 +8,6 @@ namespace Sample
     public static class Measure
     {
         public static void SearchPerformance<TState>(IProblem<TState> problem, ISearch<TState> method, string name="")
-            where TState : IState
         {
             if(!string.IsNullOrEmpty(name))
                 Console.WriteLine(name);
@@ -29,6 +27,9 @@ namespace Sample
                 var stepsCount = solution.Steps.Count();
                 Console.WriteLine("Steps:\t{0}", stepsCount);
                 Console.WriteLine("");
+
+                Console.WriteLine("State:");
+                Console.WriteLine(solution.ParentNode.State);
 
                 if (stepsCount < 100)
                 {

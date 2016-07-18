@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Aima.Utilities
@@ -81,12 +82,24 @@ namespace Aima.Utilities
             return graph.AllEdges().Sum(edge => edge.Weight);
         }
 
-        public static WeightedGraph DetachedVertices(this WeightedGraph graph, params uint[] exclude)
+        public static WeightedGraph Subtract(this WeightedGraph graph, WeightedGraph another)
+        {
+            var result = new WeightedGraph(graph.VerticesCount);
+            var allAnotherEdges = another.AllEdges().ToList();
+            foreach (var edge in graph.AllEdges())
+            {
+                if(!allAnotherEdges.Contains(edge))
+                    result.AddEdge(edge);
+            }
+            return result;
+        }
+
+        public static WeightedGraph DetachedVertices(this WeightedGraph graph, List<uint> exclude)
         {
             var result = new WeightedGraph(graph.VerticesCount);
             foreach (var edge in graph.AllEdges())
             {
-                if(!exclude.Contains(edge.To) && !exclude.Contains(edge.From))
+                if (!exclude.Contains(edge.To) && !exclude.Contains(edge.From))
                     result.AddEdge(edge);
             }
             return result;

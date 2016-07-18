@@ -1,6 +1,7 @@
+using Aima.AgentSystems;
 using Aima.Utilities;
 
-namespace Aima.AgentSystems.Vacuum.Grid
+namespace Aima.Domain.Vaccum.Grid
 {
     public class GridVacuumObservableState : IState
     {

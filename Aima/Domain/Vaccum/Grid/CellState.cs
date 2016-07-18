@@ -1,4 +1,4 @@
-namespace Aima.AgentSystems.Vacuum.Grid
+namespace Aima.Domain.Vaccum.Grid
 {
     public enum CellState
     {

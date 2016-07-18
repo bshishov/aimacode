@@ -3,7 +3,6 @@ using Aima.AgentSystems;
 namespace Aima.Search.Methods
 {
     public class IterativeDeepingSearch<TState> : ISearch<TState>
-        where TState : IState
     {
         public static readonly int MaxDepth = 1000;
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Aima.Search.Domain;
+using Aima.Domain.WebCrawl;
 using Aima.Search.Methods;
 
 namespace Sample.Excersises.Search

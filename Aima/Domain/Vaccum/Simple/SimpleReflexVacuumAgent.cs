@@ -1,6 +1,7 @@
-﻿using Aima.AgentSystems.Agents;
+﻿using Aima.AgentSystems;
+using Aima.AgentSystems.Agents;
 
-namespace Aima.AgentSystems.Vacuum.Simple
+namespace Aima.Domain.Vaccum.Simple
 {
     public class SimpleReflexVacuumAgent : SimpleReflexAgent<SimpleVacuumPerception, SimpleVacuumPerception>
     {
