@@ -90,6 +90,13 @@
     <Compile Include="Search\Methods\Genetic\Operators\ICrossoverOperator.cs" />
     <Compile Include="Search\Methods\Genetic\IFitnessFunction.cs" />
     <Compile Include="Search\Methods\Genetic\IGeneticTranslator.cs" />
+    <Compile Include="Search\Methods\HillClimbing\IHillClimbingStrategy.cs" />
+    <Compile Include="Search\Methods\HillClimbing\RandomUntilBetterHilleClimbingStrategy.cs" />
+    <Compile Include="Search\Methods\HillClimbing\SteepestAscentHillClimbingStrategy.cs" />
+    <Compile Include="Search\Methods\HillClimbing\StochasticHillClimbingStrategy.cs" />
+    <Compile Include="Search\Methods\SimulatedAnnealing\DefaultAnnealingSchedule.cs" />
+    <Compile Include="Search\Methods\SimulatedAnnealing\IAnnealingSchedule.cs" />
+    <Compile Include="Search\Methods\SimulatedAnnealing\SimulatedAnnealing.cs" />
     <Compile Include="Search\Metric\ISeachMetric.cs" />
     <Compile Include="Search\Methods\AStarSearch.cs" />
     <Compile Include="Search\Methods\BroadGraphSearch.cs" />
@@ -103,7 +110,7 @@
     <Compile Include="Search\Methods\GraphSearch.cs" />
     <Compile Include="Search\HeuristicTreeNode.cs" />
     <Compile Include="Search\HeuristicComparer.cs" />
-    <Compile Include="Search\Methods\HillClimbing.cs" />
+    <Compile Include="Search\Methods\HillClimbing\HillClimbing.cs" />
     <Compile Include="Search\INodeExpander.cs" />
     <Compile Include="Search\Methods\IterativeDeepingSearch.cs" />
     <Compile Include="Search\Metric\PathCostMetric.cs" />

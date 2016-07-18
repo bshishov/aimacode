@@ -15,7 +15,7 @@ namespace Aima.Search.Methods.Genetic
         }
 
         public double MutationChance = 0.01;
-        public double Epsilon = 0.01;
+        public double Epsilon = Double.Epsilon;
         public int PopulationSize = 10;
         public int MaxPopulations = 10000;
 
