@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using Aima.AgentSystems;
 using Aima.Search;
+using Aima.Search.Agents;
 using Aima.Search.Methods;
 using Aima.Utilities;
 

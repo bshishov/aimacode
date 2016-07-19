@@ -17,13 +17,13 @@ namespace Aima.Search.Methods.HillClimbing
             var current = initial;
             while (true)
             {
-                var goodNeighbors = expander.Expand(current, problem).Where(n => n.Heuristic < current.Heuristic).ToList();
+                var goodNeighbors = expander.Expand(current, problem).Where(n => n.F < current.F).ToList();
 
                 // No good neighbors at all nothing to select from
                 if (goodNeighbors.Count == 0)
                     return current;
 
-                var sumHeuristic = goodNeighbors.Sum(n => n.Heuristic) + 1.0;
+                var sumHeuristic = goodNeighbors.Sum(n => n.F) + 1.0;
 
                 HeuristicTreeNode<TState> neighbor = null;
 
@@ -33,7 +33,7 @@ namespace Aima.Search.Methods.HillClimbing
                     foreach (var n in goodNeighbors)
                     {
                         // the less heuristic is the higher is the chance
-                        if (rnd.NextDouble() < 1.0 - (n.Heuristic / sumHeuristic))
+                        if (rnd.NextDouble() < 1.0 - (n.F / sumHeuristic))
                         {
                             neighbor = n;
                             break;
@@ -42,7 +42,7 @@ namespace Aima.Search.Methods.HillClimbing
                 }
 
                 // if we are at local minimum then return solution
-                if (neighbor.Heuristic >= current.Heuristic)
+                if (neighbor.F >= current.F)
                     return current;
 
                 // otherwise keep climbing

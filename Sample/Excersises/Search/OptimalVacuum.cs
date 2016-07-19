@@ -2,6 +2,7 @@
 using Aima.Domain.Vaccum;
 using Aima.Domain.Vaccum.Grid;
 using Aima.Search;
+using Aima.Search.Agents;
 using Aima.Search.Methods;
 
 namespace Sample.Excersises.Search

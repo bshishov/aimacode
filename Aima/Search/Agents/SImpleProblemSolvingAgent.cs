@@ -3,7 +3,7 @@ using System.Linq;
 using Aima.AgentSystems;
 using Aima.Search.Queue;
 
-namespace Aima.Search
+namespace Aima.Search.Agents
 {
     public abstract class SimpleProblemSolvingAgent<TState, TPerception> : IAgent<TPerception>
         where TPerception : IPerception

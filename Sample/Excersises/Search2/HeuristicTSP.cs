@@ -11,14 +11,21 @@ namespace Sample.Excersises.Search2
     {
         public void Run()
         {
-            var problem = new TravelingSalespersonProblem(8, 1339);
-            
-            var heuristic = new TspMstHeuristic(problem);
-            
-            Measure.SearchPerformance(problem, new DepthSearch<TSPState>(), metric: new TspMetric());
-            //Measure.SearchPerformance(problem, new UniformCostSearch<TSPState>(), metric: new TspMetric());
-            Measure.SearchPerformance(problem, new AStarSearch<TSPState>(heuristic), metric: new TspMetric());
+            //var problem = new TravelingSalespersonProblem(11, 1339);
+            var problem = new TravelingSalespersonProblem(10, 101);
 
+            var heuristic = new TspMstHeuristic(problem);
+
+            //Measure.SearchPerformance(problem, new DepthSearch<TSPState>(), metric: new TspMetric());
+            //Measure.SearchPerformance(problem, new UniformCostSearch<TSPState>(), metric: new TspMetric());
+
+            Measure.SearchPerformance(problem, new AStarSearch<TSPState>(heuristic), metric: new TspMetric());
+            Measure.SearchPerformance(problem, new RecursiveBestFirstSearch<TSPState>(heuristic), metric: new TspMetric());
+
+            
+
+            
+            /*
             Measure.SearchPerformance(problem, new SimulatedAnnealing<TSPState>(
                 new RandomEdgesExpander(heuristic)), "Simulated annealing", metric: new TspMetric());
 
@@ -37,7 +44,7 @@ namespace Sample.Excersises.Search2
             var genetinc = new GeneticAlgorithm<uint, TSPState>(new TspGeneticTranslator(problem),
                 new TspFitnessFunction(), 1000, new PmxOperator<uint>());
 
-            Measure.SearchPerformance(problem, genetinc, metric: new TspMetric());
+            Measure.SearchPerformance(problem, genetinc, metric: new TspMetric());*/
         }
     }
 }

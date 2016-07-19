@@ -10,7 +10,7 @@ namespace Aima.Search
     {
         public int Compare(HeuristicTreeNode<TState> x, HeuristicTreeNode<TState> y)
         {
-            return x.Heuristic.CompareTo(y.Heuristic);
+            return x.F.CompareTo(y.F);
         }
     }
 }

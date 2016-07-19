@@ -73,11 +73,9 @@ namespace Aima.Search
             {
                 var action = successor.Item1;
                 var state = successor.Item2;
-                var newNode = new HeuristicTreeNode<TState>(node, state, action,
-                    problem.Cost(action, node.State, state))
-                {
-                    Heuristic = (2 - Weight) * node.PathCost + Weight * ComputeHeuristic(state)
-                };
+                var f = (2 - Weight)*node.PathCost + Weight*ComputeHeuristic(state);
+                var newNode = new HeuristicTreeNode<TState>(node, state, f, action,
+                    problem.Cost(action, node.State, state));
                 yield return newNode;
             }
         }

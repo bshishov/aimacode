@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Aima.Search.Queue
 {
-    class SortedQueue<T> : IQueue<T>
+    public class SortedQueue<T> : IQueue<T>
     {
         private readonly IComparer<T> _comparer;
         private readonly List<T> _list;

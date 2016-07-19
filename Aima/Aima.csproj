@@ -82,7 +82,7 @@
     <Compile Include="Domain\TSP\TravelingSalespersonProblem.cs" />
     <Compile Include="Domain\Vaccum\VacuumProblem.cs" />
     <Compile Include="Domain\WebCrawl\WebCrawlProblem.cs" />
-    <Compile Include="Search\ErrorFixingSolvingAgent.cs" />
+    <Compile Include="Search\Agents\ErrorFixingSolvingAgent.cs" />
     <Compile Include="Search\HeuristicSearch.cs" />
     <Compile Include="Search\IHeuristic.cs" />
     <Compile Include="Search\Methods\Genetic\Operators\DefaultCrossoverOperator.cs" />
@@ -94,6 +94,7 @@
     <Compile Include="Search\Methods\HillClimbing\RandomUntilBetterHilleClimbingStrategy.cs" />
     <Compile Include="Search\Methods\HillClimbing\SteepestAscentHillClimbingStrategy.cs" />
     <Compile Include="Search\Methods\HillClimbing\StochasticHillClimbingStrategy.cs" />
+    <Compile Include="Search\Methods\RecursiveBestFirstSearch.cs" />
     <Compile Include="Search\Methods\SimulatedAnnealing\DefaultAnnealingSchedule.cs" />
     <Compile Include="Search\Methods\SimulatedAnnealing\IAnnealingSchedule.cs" />
     <Compile Include="Search\Methods\SimulatedAnnealing\SimulatedAnnealing.cs" />
@@ -123,7 +124,7 @@
     <Compile Include="Search\Queue\LIFOQueue.cs" />
     <Compile Include="Search\Queue\SortedQueue.cs" />
     <Compile Include="Search\SearchUtilities.cs" />
-    <Compile Include="Search\SImpleProblemSolvingAgent.cs" />
+    <Compile Include="Search\Agents\SImpleProblemSolvingAgent.cs" />
     <Compile Include="Search\Solution.cs" />
     <Compile Include="Search\TreeNode.cs" />
     <Compile Include="Search\Methods\TreeSearch.cs" />

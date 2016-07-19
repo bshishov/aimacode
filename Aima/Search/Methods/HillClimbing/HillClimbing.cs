@@ -46,11 +46,7 @@ namespace Aima.Search.Methods.HillClimbing
 
         public override ISolution<TState> Search(IProblem<TState> problem)
         {
-            var current = new HeuristicTreeNode<TState>(problem.InitialState)
-            {
-                Heuristic = Expander.ComputeHeuristic(problem.InitialState)
-            };
-
+            var current = new HeuristicTreeNode<TState>(problem.InitialState, Expander.ComputeHeuristic(problem.InitialState));
             return new Solution<TState>(_strategy.Climb(current, problem, Expander));
         }
     }

@@ -14,10 +14,10 @@ namespace Aima.Search.Methods.HillClimbing
             while (true)
             {
                 // get neighbor with lowest computed heuristic
-                var neighbor = expander.Expand(current, problem).MinBy(n => n.Heuristic);
+                var neighbor = expander.Expand(current, problem).MinBy(n => n.F);
 
                 // if we are at local minimum then return solution
-                if (neighbor.Heuristic >= current.Heuristic)
+                if (neighbor.F >= current.F)
                     return current;
 
                 // otherwise keep climbing

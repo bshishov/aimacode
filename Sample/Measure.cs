@@ -10,10 +10,15 @@ namespace Sample
     {
         public static void SearchPerformance<TState>(IProblem<TState> problem, ISearch<TState> method, string name="", ISeachMetric<TState> metric = null)
         {
-            if(!string.IsNullOrEmpty(name))
-                Console.WriteLine(name);
+            if (string.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("Solving {0} using {1}", problem.GetType().Name, method.GetType().Name);
+            }
+            else
+            {
+                Console.WriteLine("Solving {0} using {1} ({2})", problem.GetType().Name, method.GetType().Name, name);
+            }
 
-            Console.WriteLine("Solving problem {0} using {1} method", problem.GetType().Name, method.GetType().Name);
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             var solution = method.Search(problem);

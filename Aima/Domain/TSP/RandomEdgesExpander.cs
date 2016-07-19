@@ -28,10 +28,7 @@ namespace Aima.Domain.TSP
                 // return arbitrary path
                 return new[]
                 {
-                    new HeuristicTreeNode<TSPState>(newState)
-                    {
-                        Heuristic = ComputeHeuristic(newState)
-                    }
+                    new HeuristicTreeNode<TSPState>(newState, ComputeHeuristic(newState))
                 };
             }
 
@@ -79,10 +76,7 @@ namespace Aima.Domain.TSP
             r.AddRange(b);
             r.AddRange(c);
             var newState = new TSPState(r);
-            return new HeuristicTreeNode<TSPState>(newState)
-            {
-                Heuristic = ComputeHeuristic(newState)
-            };
+            return new HeuristicTreeNode<TSPState>(newState, ComputeHeuristic(newState));
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Aima.Search.Methods
         public override ISolution<TState> Search(IProblem<TState> problem)
         {
             var openSet = new SortedQueue<HeuristicTreeNode<TState>>(new HeuristicComparer<TState>());
-            openSet.Put( new HeuristicTreeNode<TState>(problem.InitialState));
+            openSet.Put( new HeuristicTreeNode<TState>(problem.InitialState, Expander.ComputeHeuristic(problem.InitialState)));
             var closedSet = new HashSet<TState>();
 
             while (true)

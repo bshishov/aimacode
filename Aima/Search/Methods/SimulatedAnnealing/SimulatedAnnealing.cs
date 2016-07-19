@@ -43,10 +43,7 @@ namespace Aima.Search.Methods.SimulatedAnnealing
         public override ISolution<TState> Search(IProblem<TState> problem)
         {
             var rnd = new Random();
-            var current = new HeuristicTreeNode<TState>(problem.InitialState)
-            {
-                Heuristic = Expander.ComputeHeuristic(problem.InitialState)
-            };
+            var current = new HeuristicTreeNode<TState>(problem.InitialState, Expander.ComputeHeuristic(problem.InitialState));
 
             var time = 0;
             while (true)
@@ -60,7 +57,7 @@ namespace Aima.Search.Methods.SimulatedAnnealing
                 // get random successor
                 var successors = Expand(current, problem).ToList();
                 var next = successors[rnd.Next(successors.Count)];
-                var deltaE = next.Heuristic - current.Heuristic;
+                var deltaE = next.F - current.F;
 
                 // next is better than current
                 if (deltaE > 0)
