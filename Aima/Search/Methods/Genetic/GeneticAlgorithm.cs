@@ -102,7 +102,7 @@ namespace Aima.Search.Methods.Genetic
                         Genom = child
                     };
 
-                    if(Math.Abs(_target - newIndividual.Fitness) < Epsilon)
+                    if(newIndividual.Fitness >= _target)
                         return new Solution<TState>(new TreeNode<TState>(_translator.FromGenom(newIndividual.Genom)));
 
                     newPopulation.Add(newIndividual);

@@ -22,10 +22,6 @@ namespace Sample.Excersises.Search2
             Measure.SearchPerformance(problem, new AStarSearch<TSPState>(heuristic), metric: new TspMetric());
             Measure.SearchPerformance(problem, new RecursiveBestFirstSearch<TSPState>(heuristic), metric: new TspMetric());
 
-            
-
-            
-            /*
             Measure.SearchPerformance(problem, new SimulatedAnnealing<TSPState>(
                 new RandomEdgesExpander(heuristic)), "Simulated annealing", metric: new TspMetric());
 
@@ -44,7 +40,7 @@ namespace Sample.Excersises.Search2
             var genetinc = new GeneticAlgorithm<uint, TSPState>(new TspGeneticTranslator(problem),
                 new TspFitnessFunction(), 1000, new PmxOperator<uint>());
 
-            Measure.SearchPerformance(problem, genetinc, metric: new TspMetric());*/
+            Measure.SearchPerformance(problem, genetinc, metric: new TspMetric());
         }
     }
 }

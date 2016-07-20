@@ -20,8 +20,9 @@ namespace Sample
             //new OptimalVacuum().Run();
 
             // HEURISTIC
-            new HeuristicTSP().Run();
+            //new HeuristicTSP().Run();
             //new HeuristicSlidingTiles().Run();
+            new NQueens().Run();
 
             Console.ReadKey();
         }

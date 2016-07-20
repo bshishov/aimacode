@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Aima.Search.Methods.Genetic;
 
-namespace Aima.Domain.TSP
+namespace Aima.Domain.NQueens
 {
-   /// <summary>
-    /// Path representation.
-    /// Translates path to genom the most obvious way. 
-    /// Each number in genom is vertex id of path.
-    /// </summary>
-    public class TspGeneticTranslator : IGeneticTranslator<uint, TSPState>
+    public class QueensGeneticTranslator : IGeneticTranslator<uint, QueensPath>
     {
         private readonly int _size;
         private readonly Random _random = new Random();
 
-        public TspGeneticTranslator(TravelingSalespersonProblem problem)
+        public QueensGeneticTranslator(int deckSize)
         {
-            _size = problem.Cities.Count();
+            _size = deckSize;
         }
 
         public uint[] RandomGenom()
@@ -31,12 +25,12 @@ namespace Aima.Domain.TSP
             return pathIndicies.OrderBy(i => _random.NextDouble()).ToArray();
         }
 
-        public TSPState FromGenom(uint[] genom)
+        public QueensPath FromGenom(uint[] genom)
         {
-            return new TSPState(genom.ToList());
+            return new QueensPath(genom.ToList());
         }
 
-        public uint[] FromState(TSPState state)
+        public uint[] FromState(QueensPath state)
         {
             return state.Path.ToArray();
         }

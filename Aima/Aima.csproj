@@ -50,6 +50,12 @@
     <Compile Include="AgentSystems\Agents\SimpleReflexAgent.cs" />
     <Compile Include="AgentSystems\Agents\TableDrivenAgent.cs" />
     <Compile Include="AgentSystems\Rule.cs" />
+    <Compile Include="Domain\NQueens\AttackedQueens.cs" />
+    <Compile Include="Domain\NQueens\NonAttackedQueens.cs" />
+    <Compile Include="Domain\NQueens\NQueensAction.cs" />
+    <Compile Include="Domain\NQueens\NQueensProblem.cs" />
+    <Compile Include="Domain\NQueens\QueensGeneticTranslator.cs" />
+    <Compile Include="Domain\NQueens\QueensPath.cs" />
     <Compile Include="Domain\Obstacles\RobotState.cs" />
     <Compile Include="Domain\TSP\TspFitnessFunction.cs" />
     <Compile Include="Search\Methods\Genetic\Operators\PmxOperator.cs" />

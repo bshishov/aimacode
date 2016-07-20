@@ -1,19 +1,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Aima.Domain.TSP
+namespace Aima.Domain.NQueens
 {
-    public class TSPState
+    public class QueensPath
     {
         public readonly List<uint> Path;
-        public uint CityId => Path[Path.Count - 1];
 
-        public TSPState()
+        public QueensPath()
         {
             Path = new List<uint>();
         }
 
-        public TSPState(List<uint> path)
+        public QueensPath(List<uint> path)
         {
             Path = path;
         }
@@ -30,7 +29,7 @@ namespace Aima.Domain.TSP
 
         public override bool Equals(object obj)
         {
-            var s = obj as TSPState;
+            var s = obj as QueensPath;
             if (s != null)
                 return GetHashCode().Equals(s.GetHashCode());
             return base.Equals(obj);
