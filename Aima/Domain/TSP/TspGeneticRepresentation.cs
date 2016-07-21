@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Aima.Search.Methods.Genetic;
 
@@ -7,20 +6,20 @@ namespace Aima.Domain.TSP
 {
    /// <summary>
     /// Path representation.
-    /// Translates path to genom the most obvious way. 
-    /// Each number in genom is vertex id of path.
+    /// Translates path to genome the most obvious way. 
+    /// Each number in genome is vertex id of path.
     /// </summary>
-    public class TspGeneticTranslator : IGeneticTranslator<uint, TSPState>
+    public class TspGeneticRepresentation : IGeneticRepresentation<uint, TSPState>
     {
         private readonly int _size;
         private readonly Random _random = new Random();
 
-        public TspGeneticTranslator(TravelingSalespersonProblem problem)
+        public TspGeneticRepresentation(TravelingSalespersonProblem problem)
         {
             _size = problem.Cities.Count();
         }
 
-        public uint[] RandomGenom()
+        public uint[] RandomGenome()
         {
             var pathIndicies = new uint[_size];
 
@@ -31,26 +30,14 @@ namespace Aima.Domain.TSP
             return pathIndicies.OrderBy(i => _random.NextDouble()).ToArray();
         }
 
-        public TSPState FromGenom(uint[] genom)
+        public TSPState FromGenome(uint[] genome)
         {
-            return new TSPState(genom.ToList());
+            return new TSPState(genome.ToList());
         }
 
         public uint[] FromState(TSPState state)
         {
             return state.Path.ToArray();
-        }
-
-        public void Mutate(uint[] genom)
-        {
-            // Random swap
-            var x = _random.Next(_size - 1);
-            var y = _random.Next(x, _size);
-
-            // swap
-            var old = genom[x];
-            genom[x] = genom[y];
-            genom[y] = old;
         }
     }
 }

@@ -1,3 +1,5 @@
+using Aima.Search.NodeExpanders;
+
 namespace Aima.Search.Methods.HillClimbing
 {
     public interface IHillClimbingStrategy<TState>

@@ -4,7 +4,6 @@ namespace Aima.Utilities
 {
     public class Vector2 : ICloneable
     {
-        public const float Epsilon = 0.0000000001f;
         public static readonly Vector2 Zero = new Vector2(0, 0);
         public static readonly Vector2 Up = new Vector2(0, 1f);
         public static readonly Vector2 Down = new Vector2(0, -1f);
@@ -85,7 +84,7 @@ namespace Aima.Utilities
 
         public bool Equals(Vector2 other)
         {
-            return Math.Abs(X - other.X) < Epsilon && Math.Abs(Y - other.Y) < Epsilon;
+            return Math.Abs(X - other.X) < float.Epsilon && Math.Abs(Y - other.Y) < float.Epsilon;
         }
 
         public override bool Equals(object obj)

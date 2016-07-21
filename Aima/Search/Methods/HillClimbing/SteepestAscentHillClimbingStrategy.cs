@@ -1,3 +1,4 @@
+using Aima.Search.NodeExpanders;
 using Aima.Utilities;
 
 namespace Aima.Search.Methods.HillClimbing

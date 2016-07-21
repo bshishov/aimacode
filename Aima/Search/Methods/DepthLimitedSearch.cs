@@ -16,6 +16,11 @@ namespace Aima.Search.Methods
             return Search(new TreeNode<TState>(problem.InitialState), problem, _limit);
         }
 
+        public ISolution<TState> Search(IProblem<TState> problem, TState state)
+        {
+            return Search(new TreeNode<TState>(state), problem, _limit);
+        }
+
         public ISolution<TState> Search(ITreeNode<TState> node, IProblem<TState> problem, int limit)
         {
             if (problem.GoalTest(node.State))

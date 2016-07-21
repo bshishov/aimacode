@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aima.Search.NodeExpanders;
 
 namespace Aima.Search.Methods
 {
@@ -83,8 +84,6 @@ namespace Aima.Search.Methods
 
                 successors.Sort((n1, n2) => n1.F.CompareTo(n2.F));
             }
-
-            return new Tuple<HeuristicTreeNode<TState>, double>(null, successors[0].F);
         }
     }
 }

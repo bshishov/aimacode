@@ -32,7 +32,7 @@ namespace Aima.Utilities
             {
                 return From == e.From 
                     && To == e.To 
-                    && Math.Abs(Weight - e.Weight) < 0.0000001;
+                    && Math.Abs(Weight - e.Weight) < double.Epsilon;
             }
         }
 

@@ -1,52 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Aima.Search.Methods.Genetic.Operators;
+using Aima.Search.Methods.Genetic.CrossoverOperators;
+using Aima.Search.Methods.Genetic.MutationOperators;
 using Aima.Utilities;
 
 namespace Aima.Search.Methods.Genetic
 {
     public class GeneticAlgorithm<TAlphabet, TState> : ISearch<TState>
     {
-        public class Individual
-        {
-            public TAlphabet[] Genom;
-            public double Fitness;
-        }
-
         public double MutationChance = 0.01;
         public double Epsilon = Double.Epsilon;
         public int PopulationSize = 10;
         public int MaxPopulations = 10000;
 
         private readonly ICrossoverOperator<TAlphabet> _crossoverOperator;
-        private readonly IGeneticTranslator<TAlphabet, TState> _translator;
+        private readonly IGeneticRepresentation<TAlphabet, TState> _representation;
         private readonly IFitnessFunction<TState> _fitnessFunction;
         private readonly double _target;
+        private readonly IMutationOperator<TAlphabet> _mutationOperator;
 
-        public GeneticAlgorithm(IGeneticTranslator<TAlphabet, TState> translator, IFitnessFunction<TState> fitnessFunction, double targetFitness, ICrossoverOperator<TAlphabet> crossoverOperator)
+        public GeneticAlgorithm(IGeneticRepresentation<TAlphabet, TState> representation, 
+            IMutationOperator<TAlphabet> mutationOperator,
+            IFitnessFunction<TState> fitnessFunction, 
+            double targetFitness, 
+            ICrossoverOperator<TAlphabet> crossoverOperator)
         {
-            _translator = translator;
+            _representation = representation;
             _fitnessFunction = fitnessFunction;
             _target = targetFitness;
             _crossoverOperator = crossoverOperator;
+            _mutationOperator = mutationOperator;
         }
 
-        public GeneticAlgorithm(IGeneticTranslator<TAlphabet, TState> translator, IFitnessFunction<TState> fitnessFunction, double targetFitness)
-            : this(translator, fitnessFunction, targetFitness, new DefaultCrossoverOperator<TAlphabet>())
+        public GeneticAlgorithm(IGeneticRepresentation<TAlphabet, TState> representation, 
+            IMutationOperator<TAlphabet> mutationOperator, 
+            IFitnessFunction<TState> fitnessFunction, 
+            double targetFitness)
+            : this(representation, 
+                  mutationOperator, 
+                  fitnessFunction, 
+                  targetFitness, 
+                  new DefaultCrossoverOperator<TAlphabet>())
         {
         }
 
         public ISolution<TState> Search(IProblem<TState> problem)
         {
             var rnd = new Random();
-            var population = new List<Individual>();
+            var population = new List<Individual<TAlphabet>>();
             for (var i = 0; i < PopulationSize; i++)
             {
-                var rndGenom = _translator.RandomGenom();
-                population.Add(new Individual()
+                var rndGenom = _representation.RandomGenome();
+                population.Add(new Individual<TAlphabet>()
                 {
-                    Fitness = _fitnessFunction.Compute(problem, _translator.FromGenom(rndGenom)),
+                    Fitness = _fitnessFunction.Compute(problem, _representation.FromGenome(rndGenom)),
                     Genom = rndGenom
                 });
             }
@@ -55,12 +63,12 @@ namespace Aima.Search.Methods.Genetic
 
             while (populationN++ < MaxPopulations)
             {
-                var newPopulation = new List<Individual>();
+                var newPopulation = new List<Individual<TAlphabet>>();
                 var sumFitness = population.Sum(i => i.Fitness);
 
                 for (var i = 0; i < PopulationSize; i++)
                 {
-                    Individual x = null, y = null;
+                    Individual<TAlphabet> x = null, y = null;
 
                     // Random selection of 1st parent
                     while (x == null)
@@ -94,16 +102,16 @@ namespace Aima.Search.Methods.Genetic
 
                     // Mutate with chance
                     if (rnd.NextDouble() < MutationChance)
-                        _translator.Mutate(child);
+                        _mutationOperator.Apply(child);
 
-                    var newIndividual = new Individual
+                    var newIndividual = new Individual<TAlphabet>
                     {
-                        Fitness = _fitnessFunction.Compute(problem, _translator.FromGenom(child)),
+                        Fitness = _fitnessFunction.Compute(problem, _representation.FromGenome(child)),
                         Genom = child
                     };
 
                     if(newIndividual.Fitness >= _target)
-                        return new Solution<TState>(new TreeNode<TState>(_translator.FromGenom(newIndividual.Genom)));
+                        return new Solution<TState>(new TreeNode<TState>(_representation.FromGenome(newIndividual.Genom)));
 
                     newPopulation.Add(newIndividual);
                 }
@@ -112,7 +120,7 @@ namespace Aima.Search.Methods.Genetic
             }
 
             return new Solution<TState>(new TreeNode<TState>(
-                _translator.FromGenom(
+                _representation.FromGenome(
                     population.MaxBy(i=>i.Fitness).Genom
                     )));
         }

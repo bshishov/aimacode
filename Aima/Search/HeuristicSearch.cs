@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Aima.Search.NodeExpanders;
 
 namespace Aima.Search
 {

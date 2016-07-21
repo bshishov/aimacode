@@ -178,6 +178,19 @@ namespace Aima.Domain.Vaccum.Grid
             return State.Field[point.X, point.Y];
         }
 
-        public bool AllClean => State.Field.IsClear(Width, Height);
+        public bool AllClean => IsClear(State.Field, Width, Height);
+
+        public static bool IsClear(CellState[,] array, int w, int h)
+        {
+            for (var i = 0; i < w; i++)
+            {
+                for (var j = 0; j < h; j++)
+                {
+                    if (array[i, j] == CellState.Dirty)
+                        return false;
+                }
+            }
+            return true;
+        }
     }
 }

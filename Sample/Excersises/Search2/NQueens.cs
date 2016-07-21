@@ -1,7 +1,8 @@
 ﻿using Aima.Domain.NQueens;
 using Aima.Search.Methods;
 using Aima.Search.Methods.Genetic;
-using Aima.Search.Methods.Genetic.Operators;
+using Aima.Search.Methods.Genetic.CrossoverOperators;
+using Aima.Search.Methods.Genetic.MutationOperators;
 using Aima.Search.Methods.HillClimbing;
 
 namespace Sample.Excersises.Search2
@@ -20,7 +21,8 @@ namespace Sample.Excersises.Search2
             Measure.SearchPerformance(problem, new HillClimbing<QueensPath>(attackedQueens), metric: attackedQueens);
 
             var geneticAlgorithm = new GeneticAlgorithm<uint, QueensPath>(
-                new QueensGeneticTranslator(problem.N),
+                new QueensGeneticRepresentation(problem.N),
+                new RandomSwapMutationOperator<uint>(), 
                 nonAttackedQueens, problem.N, new PmxOperator<uint>())
             {
                 MaxPopulations = 10000

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Aima.Search.Methods.Genetic.Operators
+namespace Aima.Search.Methods.Genetic.CrossoverOperators
 {
     /// <summary>
     /// Partially-mapped crossover operator

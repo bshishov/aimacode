@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Aima.Search.NodeExpanders;
 
 namespace Aima.Search.Methods.SimulatedAnnealing
 {

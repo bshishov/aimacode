@@ -1,5 +1,6 @@
 ﻿using System;
-using Aima.Domain.Vaccum.Grid;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Aima.Utilities
 {
@@ -30,17 +31,55 @@ namespace Aima.Utilities
             return hash;
         }
 
-        public static bool IsClear(this CellState[,] array, int w, int h)
+        public static void Append<T1, T2>(this Dictionary<T1, List<T2>> dict, T1 key, T2 value)
         {
-            for (var i = 0; i < w; i++)
+            if (!dict.ContainsKey(key))
+                dict.Add(key, new List<T2> { value });
+            else
             {
-                for (var j = 0; j < h; j++)
-                {
-                    if (array[i, j] == CellState.Dirty)
-                        return false;
-                }
+                if (dict[key] == null)
+                    dict[key] = new List<T2> { value };
+                else
+                    dict[key].Add(value);
             }
-            return true;
+        }
+
+        public static void Prepend<T1, T2>(this Dictionary<T1, List<T2>> dict, T1 key, T2 value)
+        {
+            if (!dict.ContainsKey(key))
+                dict.Add(key, new List<T2> { value });
+            else
+            {
+                if (dict[key] == null)
+                    dict[key] = new List<T2> { value };
+                else
+                    dict[key].Insert(0, value);
+            }
+        }
+
+        public static bool IsEmpty<T1, T2>(this Dictionary<T1, List<T2>> dict, T1 key)
+        {
+            if (!dict.ContainsKey(key))
+                return true;
+
+            if (dict[key] == null)
+                return true;
+
+            return dict[key].Count == 0;
+        }
+
+        public static T2 Pop<T1, T2>(this Dictionary<T1, List<T2>> dict, T1 key)
+        {
+            if (!dict.ContainsKey(key))
+                throw new InvalidOperationException("Nothing to pop");
+
+            var list = dict[key];
+            if (list == null || list.Count == 0)
+                throw new InvalidOperationException("Nothing to pop");
+
+            var val = list.First();
+            list.RemoveAt(0);
+            return val;
         }
     }
 }

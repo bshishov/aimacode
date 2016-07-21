@@ -7,15 +7,16 @@ using Aima.Utilities;
 
 namespace Aima.Domain.Obstacles
 {
-    public class ObstaclesProblem : IProblem<RobotState>
+    public class PathFindingProblem : IProblem<RobotState>
     {
         public RobotState InitialState { get; }
+        public Vector2 TargetPosition => _points[1];
 
         private readonly List<IShape> _obstacles = new List<IShape>();
         private readonly List<Line> _edges;
         private readonly List<Vector2> _points;
 
-        public ObstaclesProblem()
+        public PathFindingProblem()
         {
             InitialState = new RobotState { VertexId = 0 };
 
@@ -49,6 +50,11 @@ namespace Aima.Domain.Obstacles
             var a = _points[from.VertexId];
             var b = _points[to.VertexId];
             return (b - a).Length;
+        }
+
+        public double DistanceToTarget(RobotState state)
+        {
+            return (_points[state.VertexId] - _points[1]).Length;
         }
     }
 }

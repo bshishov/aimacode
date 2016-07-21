@@ -3,11 +3,11 @@ using Aima.Search.Methods;
 
 namespace Sample.Excersises.Search
 {
-    class GeometryPath : IExcersice
+    class PathFinding : IExcersice
     {
         public void Run()
         {
-            var problem = new ObstaclesProblem();
+            var problem = new PathFindingProblem();
 
             Measure.SearchPerformance(problem, new UniformCostSearch<RobotState>());
             Measure.SearchPerformance(problem, new BroadSearch<RobotState>());

@@ -88,8 +88,8 @@ namespace Aima.Domain.NQueens
 
         public double Cost(IAction action, QueensPath @from, QueensPath to)
         {
-            // each placement of queen costs 1
-            return 1.0;
+            // each placement of queen costs 0
+            return 0.0;
         }
     }
 }

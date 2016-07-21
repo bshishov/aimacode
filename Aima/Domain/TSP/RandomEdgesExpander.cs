@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Aima.Search;
+using Aima.Search.NodeExpanders;
 
 namespace Aima.Domain.TSP
 {

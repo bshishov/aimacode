@@ -4,17 +4,17 @@ using Aima.Search.Methods.Genetic;
 
 namespace Aima.Domain.NQueens
 {
-    public class QueensGeneticTranslator : IGeneticTranslator<uint, QueensPath>
+    public class QueensGeneticRepresentation : IGeneticRepresentation<uint, QueensPath>
     {
         private readonly int _size;
         private readonly Random _random = new Random();
 
-        public QueensGeneticTranslator(int deckSize)
+        public QueensGeneticRepresentation(int deckSize)
         {
             _size = deckSize;
         }
 
-        public uint[] RandomGenom()
+        public uint[] RandomGenome()
         {
             var pathIndicies = new uint[_size];
 
@@ -25,26 +25,14 @@ namespace Aima.Domain.NQueens
             return pathIndicies.OrderBy(i => _random.NextDouble()).ToArray();
         }
 
-        public QueensPath FromGenom(uint[] genom)
+        public QueensPath FromGenome(uint[] genome)
         {
-            return new QueensPath(genom.ToList());
+            return new QueensPath(genome.ToList());
         }
 
         public uint[] FromState(QueensPath state)
         {
             return state.Path.ToArray();
-        }
-
-        public void Mutate(uint[] genom)
-        {
-            // Random swap
-            var x = _random.Next(_size - 1);
-            var y = _random.Next(x, _size);
-
-            // swap
-            var old = genom[x];
-            genom[x] = genom[y];
-            genom[y] = old;
         }
     }
 }

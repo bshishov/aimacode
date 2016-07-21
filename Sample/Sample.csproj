@@ -46,10 +46,11 @@
     <Compile Include="Excersises\Search2\HeuristicSlidingTiles.cs" />
     <Compile Include="Excersises\Search2\HeuristicTSP.cs" />
     <Compile Include="Excersises\Search2\NQueens.cs" />
+    <Compile Include="Excersises\Search2\PathFinding.cs" />
     <Compile Include="Measure.cs" />
     <Compile Include="Excersises\Search\SlidingTiles.cs" />
     <Compile Include="Excersises\IExcersice.cs" />
-    <Compile Include="Excersises\Search\GeometryPath.cs" />
+    <Compile Include="Excersises\Search\PathFinding.cs" />
     <Compile Include="Excersises\Search\OptimalVacuum.cs" />
     <Compile Include="Excersises\Search\RiverSample.cs" />
     <Compile Include="Excersises\Search\Robot.cs" />

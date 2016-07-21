@@ -1,7 +1,8 @@
 ﻿using Aima.Domain.TSP;
 using Aima.Search.Methods;
 using Aima.Search.Methods.Genetic;
-using Aima.Search.Methods.Genetic.Operators;
+using Aima.Search.Methods.Genetic.CrossoverOperators;
+using Aima.Search.Methods.Genetic.MutationOperators;
 using Aima.Search.Methods.HillClimbing;
 using Aima.Search.Methods.SimulatedAnnealing;
 
@@ -37,7 +38,8 @@ namespace Sample.Excersises.Search2
                 new StochasticHillClimbingStrategy<TSPState>(), 
                 new RandomEdgesExpander(heuristic)), "Stochastic", metric: new TspMetric());
 
-            var genetinc = new GeneticAlgorithm<uint, TSPState>(new TspGeneticTranslator(problem),
+            var genetinc = new GeneticAlgorithm<uint, TSPState>(new TspGeneticRepresentation(problem),
+                new RandomSwapMutationOperator<uint>(),
                 new TspFitnessFunction(), 1000, new PmxOperator<uint>());
 
             Measure.SearchPerformance(problem, genetinc, metric: new TspMetric());

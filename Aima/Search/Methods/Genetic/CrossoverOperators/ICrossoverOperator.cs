@@ -1,4 +1,4 @@
-namespace Aima.Search.Methods.Genetic.Operators
+namespace Aima.Search.Methods.Genetic.CrossoverOperators
 {
     public interface ICrossoverOperator<TAlphabet>
     {

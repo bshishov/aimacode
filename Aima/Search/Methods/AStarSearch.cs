@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aima.Search.NodeExpanders;
 using Aima.Search.Queue;
 
 namespace Aima.Search.Methods

@@ -1,6 +1,6 @@
 using System;
 
-namespace Aima.Search.Methods.Genetic.Operators
+namespace Aima.Search.Methods.Genetic.CrossoverOperators
 {
     public class DefaultCrossoverOperator<TAlphabet> : ICrossoverOperator<TAlphabet>
     {
