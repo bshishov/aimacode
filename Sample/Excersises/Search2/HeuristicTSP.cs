@@ -3,6 +3,7 @@ using Aima.Search.Methods;
 using Aima.Search.Methods.Genetic;
 using Aima.Search.Methods.Genetic.CrossoverOperators;
 using Aima.Search.Methods.Genetic.MutationOperators;
+using Aima.Search.Methods.Genetic.SelectionOperators;
 using Aima.Search.Methods.HillClimbing;
 using Aima.Search.Methods.SimulatedAnnealing;
 
@@ -39,6 +40,7 @@ namespace Sample.Excersises.Search2
                 new RandomEdgesExpander(heuristic)), "Stochastic", metric: new TspMetric());
 
             var genetinc = new GeneticAlgorithm<uint, TSPState>(new TspGeneticRepresentation(problem),
+                new FitnessProportionateSelection<uint, TSPState>(), 
                 new RandomSwapMutationOperator<uint>(),
                 new TspFitnessFunction(), 1000, new PmxOperator<uint>());
 

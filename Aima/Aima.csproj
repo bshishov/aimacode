@@ -64,8 +64,8 @@
     <Compile Include="Search\Methods\Genetic\Individual.cs" />
     <Compile Include="Search\Methods\Genetic\MutationOperators\IMutationOperator.cs" />
     <Compile Include="Search\Methods\Genetic\MutationOperators\RandomSwapMutationOperator.cs" />
-    <Compile Include="Search\Methods\Genetic\Selections\FitnessProportionateSelection.cs" />
-    <Compile Include="Search\Methods\Genetic\Selections\ISelection.cs" />
+    <Compile Include="Search\Methods\Genetic\SelectionOperators\FitnessProportionateSelection.cs" />
+    <Compile Include="Search\Methods\Genetic\SelectionOperators\ISelectionOperator.cs" />
     <Compile Include="Search\NodeExpanders\DefaultHeuristicNodeExpander.cs" />
     <Compile Include="Search\NodeExpanders\DefaultNodeExpander.cs" />
     <Compile Include="Search\NodeExpanders\HeuristicNodeExpander.cs" />

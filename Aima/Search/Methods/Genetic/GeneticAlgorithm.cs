@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Aima.Search.Methods.Genetic.CrossoverOperators;
 using Aima.Search.Methods.Genetic.MutationOperators;
+using Aima.Search.Methods.Genetic.SelectionOperators;
 using Aima.Utilities;
 
 namespace Aima.Search.Methods.Genetic
@@ -19,28 +19,46 @@ namespace Aima.Search.Methods.Genetic
         private readonly IFitnessFunction<TState> _fitnessFunction;
         private readonly double _target;
         private readonly IMutationOperator<TAlphabet> _mutationOperator;
+        private readonly ISelectionOperator<TAlphabet, TState> _selectionOperator;
 
-        public GeneticAlgorithm(IGeneticRepresentation<TAlphabet, TState> representation, 
+        public GeneticAlgorithm(IGeneticRepresentation<TAlphabet, TState> representation,
+            ISelectionOperator<TAlphabet, TState> selectionOperator,
             IMutationOperator<TAlphabet> mutationOperator,
             IFitnessFunction<TState> fitnessFunction, 
             double targetFitness, 
             ICrossoverOperator<TAlphabet> crossoverOperator)
         {
             _representation = representation;
+            _selectionOperator = selectionOperator;
             _fitnessFunction = fitnessFunction;
             _target = targetFitness;
             _crossoverOperator = crossoverOperator;
             _mutationOperator = mutationOperator;
         }
 
-        public GeneticAlgorithm(IGeneticRepresentation<TAlphabet, TState> representation, 
+        public GeneticAlgorithm(IGeneticRepresentation<TAlphabet, TState> representation,
+            ISelectionOperator<TAlphabet, TState> selectionOperator,
             IMutationOperator<TAlphabet> mutationOperator, 
             IFitnessFunction<TState> fitnessFunction, 
             double targetFitness)
-            : this(representation, 
+            : this(representation,
+                  selectionOperator,
                   mutationOperator, 
                   fitnessFunction, 
                   targetFitness, 
+                  new DefaultCrossoverOperator<TAlphabet>())
+        {
+        }
+
+        public GeneticAlgorithm(IGeneticRepresentation<TAlphabet, TState> representation,
+            IMutationOperator<TAlphabet> mutationOperator,
+            IFitnessFunction<TState> fitnessFunction,
+            double targetFitness)
+            : this(representation,
+                  new FitnessProportionateSelection<TAlphabet, TState>(), 
+                  mutationOperator,
+                  fitnessFunction,
+                  targetFitness,
                   new DefaultCrossoverOperator<TAlphabet>())
         {
         }
@@ -64,53 +82,26 @@ namespace Aima.Search.Methods.Genetic
             while (populationN++ < MaxPopulations)
             {
                 var newPopulation = new List<Individual<TAlphabet>>();
-                var sumFitness = population.Sum(i => i.Fitness);
+                
+                var selection = _selectionOperator.SelectPairs(population, _fitnessFunction);
 
-                for (var i = 0; i < PopulationSize; i++)
+                foreach (var pair in selection)
                 {
-                    Individual<TAlphabet> x = null, y = null;
-
-                    // Random selection of 1st parent
-                    while (x == null)
-                    {
-                        foreach (var individual in population)
-                        {
-                            var chance = individual.Fitness / sumFitness;
-                            if (rnd.NextDouble() < chance)
-                            {
-                                x = individual;
-                                break;
-                            }
-                        }
-                    }
-
-                    // Random selection of 2nd parent
-                    while (y == null)
-                    {
-                        foreach (var individual in population)
-                        {
-                            var chance = individual.Fitness / sumFitness;
-                            if (rnd.NextDouble() < chance)
-                            {
-                                y = individual;
-                                break;
-                            }
-                        }
-                    }
-
-                    var child = _crossoverOperator.Apply(x.Genom, y.Genom);
+                    var child = _crossoverOperator.Apply(pair.Item1.Genom, pair.Item2.Genom);
 
                     // Mutate with chance
                     if (rnd.NextDouble() < MutationChance)
                         _mutationOperator.Apply(child);
 
+                    // create new individual
                     var newIndividual = new Individual<TAlphabet>
                     {
                         Fitness = _fitnessFunction.Compute(problem, _representation.FromGenome(child)),
                         Genom = child
                     };
 
-                    if(newIndividual.Fitness >= _target)
+                    // if individual fits enough
+                    if (newIndividual.Fitness >= _target)
                         return new Solution<TState>(new TreeNode<TState>(_representation.FromGenome(newIndividual.Genom)));
 
                     newPopulation.Add(newIndividual);

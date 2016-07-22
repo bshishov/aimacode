@@ -3,6 +3,7 @@ using Aima.Search.Methods;
 using Aima.Search.Methods.Genetic;
 using Aima.Search.Methods.Genetic.CrossoverOperators;
 using Aima.Search.Methods.Genetic.MutationOperators;
+using Aima.Search.Methods.Genetic.SelectionOperators;
 using Aima.Search.Methods.HillClimbing;
 
 namespace Sample.Excersises.Search2
@@ -22,6 +23,7 @@ namespace Sample.Excersises.Search2
 
             var geneticAlgorithm = new GeneticAlgorithm<uint, QueensPath>(
                 new QueensGeneticRepresentation(problem.N),
+                new FitnessProportionateSelection<uint, QueensPath>(), 
                 new RandomSwapMutationOperator<uint>(), 
                 nonAttackedQueens, problem.N, new PmxOperator<uint>())
             {
