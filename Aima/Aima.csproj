@@ -50,6 +50,10 @@
     <Compile Include="AgentSystems\Agents\SimpleReflexAgent.cs" />
     <Compile Include="AgentSystems\Agents\TableDrivenAgent.cs" />
     <Compile Include="AgentSystems\Rule.cs" />
+    <Compile Include="ConstraintSatisfaction\Assigment.cs" />
+    <Compile Include="ConstraintSatisfaction\AssigmentAction.cs" />
+    <Compile Include="ConstraintSatisfaction\ConstraintClassificationProblem.cs" />
+    <Compile Include="ConstraintSatisfaction\VarState.cs" />
     <Compile Include="Domain\NQueens\AttackedQueens.cs" />
     <Compile Include="Domain\NQueens\NonAttackedQueens.cs" />
     <Compile Include="Domain\NQueens\NQueensAction.cs" />
