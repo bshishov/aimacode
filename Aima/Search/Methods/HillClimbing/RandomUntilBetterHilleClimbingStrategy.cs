@@ -1,3 +1,4 @@
+using System;
 using Aima.Search.NodeExpanders;
 using Aima.Utilities;
 
@@ -10,6 +11,8 @@ namespace Aima.Search.Methods.HillClimbing
     /// <typeparam name="TState"></typeparam>
     public class RandomUntilBetterHilleClimbingStrategy<TState> : IHillClimbingStrategy<TState>
     {
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
+
         private readonly int _maxTries;
 
         public RandomUntilBetterHilleClimbingStrategy(int maxTries = 10)
@@ -23,6 +26,8 @@ namespace Aima.Search.Methods.HillClimbing
             var tryN = 0;
             while (tryN < _maxTries)
             {
+                SearchNodeChanged?.Invoke(current);
+
                 // get neighbor with lowest computed heuristic
                 var neighbor = expander.Expand(current, problem).MinBy(n => n.F);
 

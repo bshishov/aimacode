@@ -6,6 +6,8 @@ namespace Aima.Search.Methods.SimulatedAnnealing
 {
     public class SimulatedAnnealing<TState> : HeuristicSearch<TState>
     {
+        public override event Action<ITreeNode<TState>> SearchNodeChanged;
+
         private readonly IAnnealingSchedule _schedule;
 
         public SimulatedAnnealing(IAnnealingSchedule schedule, HeuristicNodeExpander<TState> expander) 
@@ -50,6 +52,9 @@ namespace Aima.Search.Methods.SimulatedAnnealing
             while (true)
             {
                 var temperature = _schedule.Temparature(time);
+
+                // Notify new state
+                this.SearchNodeChanged?.Invoke(current);
 
                 // annealing end
                 if (temperature < Double.Epsilon)

@@ -1,3 +1,4 @@
+using System;
 using Aima.AgentSystems;
 
 namespace Aima.Search.Methods
@@ -10,7 +11,13 @@ namespace Aima.Search.Methods
         {
             for (var i = 0; i < MaxDepth; i++)
             {
-                var res = new DepthLimitedSearch<TState>(i).Search(problem);
+                var search = new DepthLimitedSearch<TState>(i);
+
+                // Subscribe to active node changed event, and pass it
+                if (SearchNodeChanged != null)
+                    search.SearchNodeChanged += node => SearchNodeChanged?.Invoke(node);
+
+                var res = search.Search(problem);
 
                 // If no result that this is a failure
                 if (res == null)
@@ -24,5 +31,7 @@ namespace Aima.Search.Methods
             // No results found in MaxDepth
             return null;
         }
+
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
     }
 }

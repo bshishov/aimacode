@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Aima.Search.Queue;
@@ -6,6 +7,8 @@ namespace Aima.Search.Methods
 {
     public class UniformCostSearch<TState> : ISearch<TState>
     {
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
+
         public ISolution<TState> Search(IProblem<TState> problem)
         {
             // TODO: OPTIMIZE PERFORMANCE!!!
@@ -19,6 +22,9 @@ namespace Aima.Search.Methods
                     return null;
 
                 var node = openSet.Take();
+
+                // notify active search node changed
+                SearchNodeChanged?.Invoke(node);
 
                 if (problem.GoalTest(node.State))
                     return new Solution<TState>(node);

@@ -15,6 +15,7 @@ namespace Aima.Search.Methods.HillClimbing
             : base(expander)
         {
             _strategy = strategy;
+            _strategy.SearchNodeChanged += node => SearchNodeChanged?.Invoke(node);
         }
 
         public HillClimbing(IHillClimbingStrategy<TState> strategy, IHeuristic<TState> heuristic) 
@@ -50,5 +51,7 @@ namespace Aima.Search.Methods.HillClimbing
             var current = new HeuristicTreeNode<TState>(problem.InitialState, Expander.ComputeHeuristic(problem.InitialState));
             return new Solution<TState>(_strategy.Climb(current, problem, Expander));
         }
+
+        public override event Action<ITreeNode<TState>> SearchNodeChanged;
     }
 }

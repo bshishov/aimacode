@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Aima.Search.Queue;
 
@@ -6,6 +7,8 @@ namespace Aima.Search.Methods
     public class GraphSearch<TState, TQueue> : ISearch<TState>
         where TQueue : IQueue<ITreeNode<TState>>, new()
     {
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
+
         public ISolution<TState> Search(IProblem<TState> problem)
         {
             var closedSet = new HashSet<TState>();
@@ -18,6 +21,10 @@ namespace Aima.Search.Methods
                     return null;
 
                 var node = openSet.Take();
+
+                // Notify subscribers that node is changed
+                SearchNodeChanged?.Invoke(node);
+
                 if (problem.GoalTest(node.State))
                     return new Solution<TState>(node);
 

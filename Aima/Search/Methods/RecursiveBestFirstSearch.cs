@@ -7,6 +7,8 @@ namespace Aima.Search.Methods
 {
     public class RecursiveBestFirstSearch<TState> : HeuristicSearch<TState>
     {
+        public override event Action<ITreeNode<TState>> SearchNodeChanged;
+
         public class RBFSExpander<T> : HeuristicNodeExpander<T>
         {
             public RBFSExpander(IHeuristic<T> heuristic)
@@ -58,6 +60,9 @@ namespace Aima.Search.Methods
 
         private Tuple<HeuristicTreeNode<TState>, double> RBFS(IProblem<TState> problem, HeuristicTreeNode<TState> node, double fLimit)
         {
+            // Notify new state
+            SearchNodeChanged?.Invoke(node);
+
             if (problem.GoalTest(node.State))
                 return new Tuple<HeuristicTreeNode<TState>, double>(node, fLimit);
 

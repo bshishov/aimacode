@@ -65,6 +65,7 @@
     <Compile Include="Domain\TSP\TspFitnessFunction.cs" />
     <Compile Include="Search\Agents\LearningRealTimeAStarAgent.cs" />
     <Compile Include="Search\Agents\OnlineDFSAgent.cs" />
+    <Compile Include="Search\ISearchStepNotifier.cs" />
     <Compile Include="Search\Methods\Genetic\Individual.cs" />
     <Compile Include="Search\Methods\Genetic\MutationOperators\IMutationOperator.cs" />
     <Compile Include="Search\Methods\Genetic\MutationOperators\RandomSwapMutationOperator.cs" />

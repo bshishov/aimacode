@@ -13,6 +13,7 @@ namespace Aima.Search.Methods
     public class AStarSearch<TState> : HeuristicSearch<TState>
     {
         public double Weight = 1.0;
+        public override event Action<ITreeNode<TState>> SearchNodeChanged;
 
         public AStarSearch(HeuristicNodeExpander<TState> expander) : base(expander)
         {
@@ -39,6 +40,9 @@ namespace Aima.Search.Methods
                     return null;
 
                 var node = openSet.Take();
+
+                // notify new state
+                SearchNodeChanged?.Invoke(node);
 
                 if (problem.GoalTest(node.State))
                     return new Solution<TState>(node);

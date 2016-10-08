@@ -29,5 +29,7 @@ namespace Aima.Search
         {
             return Expander.Expand(node, problem);
         }
+
+        public abstract event Action<ITreeNode<TState>> SearchNodeChanged;
     }
 }

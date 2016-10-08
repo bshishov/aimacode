@@ -88,7 +88,7 @@ namespace Aima.Search.Methods.Genetic
                 foreach (var pair in selection)
                 {
                     var child = _crossoverOperator.Apply(pair.Item1.Genom, pair.Item2.Genom);
-
+                    
                     // Mutate with chance
                     if (rnd.NextDouble() < MutationChance)
                         _mutationOperator.Apply(child);
@@ -99,6 +99,9 @@ namespace Aima.Search.Methods.Genetic
                         Fitness = _fitnessFunction.Compute(problem, _representation.FromGenome(child)),
                         Genom = child
                     };
+
+                    // Notify that new child is selected
+                    SearchNodeChanged?.Invoke(new TreeNode<TState>(_representation.FromGenome(newIndividual.Genom)));
 
                     // if individual fits enough
                     if (newIndividual.Fitness >= _target)
@@ -115,5 +118,7 @@ namespace Aima.Search.Methods.Genetic
                     population.MaxBy(i=>i.Fitness).Genom
                     )));
         }
+
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
     }
 }

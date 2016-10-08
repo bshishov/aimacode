@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Aima.Search.NodeExpanders;
 using Aima.Utilities;
 
@@ -11,6 +12,8 @@ namespace Aima.Search.Methods.HillClimbing
     /// <typeparam name="TState"></typeparam>
     public class KDepthHillClimbingStrategy<TState> : IHillClimbingStrategy<TState>
     {
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
+
         private readonly DepthLimitedSearch<TState> _dls;
 
         public KDepthHillClimbingStrategy(int k)
@@ -23,6 +26,8 @@ namespace Aima.Search.Methods.HillClimbing
             var current = initial;
             while (true)
             {
+                SearchNodeChanged?.Invoke(current);
+
                 var neighbors = expander.Expand(current, problem).ToList();
                 foreach (var node in neighbors)
                 {

@@ -12,12 +12,16 @@ namespace Aima.Search.Methods.HillClimbing
     /// <typeparam name="TState"></typeparam>
     public class StochasticHillClimbingStrategy<TState> : IHillClimbingStrategy<TState>
     {
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
+
         public HeuristicTreeNode<TState> Climb(HeuristicTreeNode<TState> initial, IProblem<TState> problem, HeuristicNodeExpander<TState> expander)
         {
             var rnd = new Random();
             var current = initial;
             while (true)
             {
+                SearchNodeChanged?.Invoke(current);
+
                 var goodNeighbors = expander.Expand(current, problem).Where(n => n.F < current.F).ToList();
 
                 // No good neighbors at all nothing to select from
