@@ -14,12 +14,16 @@ namespace Aima.Search.Methods.Genetic
         public int PopulationSize = 10;
         public int MaxPopulations = 10000;
 
+        public int CurrentPopulation => _populationN;
+        public IFitnessFunction<TState> FitnessFunction => _fitnessFunction;
+
         private readonly ICrossoverOperator<TAlphabet> _crossoverOperator;
         private readonly IGeneticRepresentation<TAlphabet, TState> _representation;
         private readonly IFitnessFunction<TState> _fitnessFunction;
         private readonly double _target;
         private readonly IMutationOperator<TAlphabet> _mutationOperator;
         private readonly ISelectionOperator<TAlphabet, TState> _selectionOperator;
+        private int _populationN;
 
         public GeneticAlgorithm(IGeneticRepresentation<TAlphabet, TState> representation,
             ISelectionOperator<TAlphabet, TState> selectionOperator,
@@ -77,9 +81,9 @@ namespace Aima.Search.Methods.Genetic
                 });
             }
 
-            var populationN = 0;
+            _populationN = 0;
 
-            while (populationN++ < MaxPopulations)
+            while (_populationN++ < MaxPopulations)
             {
                 var newPopulation = new List<Individual<TAlphabet>>();
                 
@@ -100,17 +104,23 @@ namespace Aima.Search.Methods.Genetic
                         Genom = child
                     };
 
-                    // Notify that new child is selected
-                    SearchNodeChanged?.Invoke(new TreeNode<TState>(_representation.FromGenome(newIndividual.Genom)));
-
                     // if individual fits enough
                     if (newIndividual.Fitness >= _target)
-                        return new Solution<TState>(new TreeNode<TState>(_representation.FromGenome(newIndividual.Genom)));
+                    {
+                        var winner = new TreeNode<TState>(_representation.FromGenome(newIndividual.Genom));
+                        SearchNodeChanged?.Invoke(winner);
+                        return
+                            new Solution<TState>(winner);
+                    }
 
                     newPopulation.Add(newIndividual);
                 }
 
                 population = newPopulation;
+
+                var best = population.MaxBy(ind => ind.Fitness);
+                // Notify that new child is selected
+                SearchNodeChanged?.Invoke(new TreeNode<TState>(_representation.FromGenome(best.Genom)));
             }
 
             return new Solution<TState>(new TreeNode<TState>(

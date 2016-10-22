@@ -22,8 +22,9 @@ namespace Sample
             // HEURISTIC
             //new HeuristicTSP().Run();
             //new HeuristicSlidingTiles().Run();
-            new NQueens().Run();
-            new Excersises.Search2.PathFinding().Run();
+            //new NQueens().Run();
+            //new Excersises.Search2.PathFinding().Run();
+            new Excersises.WellsSearch().Run();
 
             Console.ReadKey();
         }
