@@ -2,16 +2,11 @@
 
 namespace Aima.AgentSystems.Agents
 {
-    class TableDrivenAgent<T> : IAgent<T> 
+    internal class TableDrivenAgent<T> : IAgent<T>
         where T : IPerception
     {
         private readonly List<T> _percepts = new List<T>();
-        private readonly Dictionary<IEnumerable<T>, IAction> _table = new Dictionary<IEnumerable<T>,IAction>();
-
-        public void Add(IEnumerable<T> percepts, IAction action)
-        {
-            _table.Add(percepts, action);
-        }
+        private readonly Dictionary<IEnumerable<T>, IAction> _table = new Dictionary<IEnumerable<T>, IAction>();
 
         public IAction Execute(T perception)
         {
@@ -22,6 +17,11 @@ namespace Aima.AgentSystems.Agents
                 return action;
 
             return null;
+        }
+
+        public void Add(IEnumerable<T> percepts, IAction action)
+        {
+            _table.Add(percepts, action);
         }
     }
 }

@@ -20,11 +20,11 @@ namespace Sample
             //new OptimalVacuum().Run();
 
             // HEURISTIC
-            //new HeuristicTSP().Run();
+            new HeuristicTSP().Run();
             //new HeuristicSlidingTiles().Run();
             //new NQueens().Run();
             //new Excersises.Search2.PathFinding().Run();
-            new Excersises.WellsSearch().Run();
+            //new Excersises.WellsSearch().Run();
 
             Console.ReadKey();
         }

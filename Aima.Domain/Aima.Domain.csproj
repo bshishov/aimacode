@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{585ED353-A49B-448F-94A9-C350490E4AFA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aima.Domain</RootNamespace>
+    <AssemblyName>Aima.Domain</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Extensions">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NQueens\AttackedQueens.cs" />
+    <Compile Include="NQueens\NonAttackedQueens.cs" />
+    <Compile Include="NQueens\NQueensAction.cs" />
+    <Compile Include="NQueens\NQueensProblem.cs" />
+    <Compile Include="NQueens\QueensGeneticRepresentation.cs" />
+    <Compile Include="NQueens\QueensPath.cs" />
+    <Compile Include="Obstacles\PathFindingProblem.cs" />
+    <Compile Include="Obstacles\RobotState.cs" />
+    <Compile Include="Obstacles\StraightDistance.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="River\RiverActions.cs" />
+    <Compile Include="River\RiverProblem.cs" />
+    <Compile Include="River\RiverState.cs" />
+    <Compile Include="SlidingTiles\SlidingTilesActions.cs" />
+    <Compile Include="SlidingTiles\SlidingTilesHeuristics.cs" />
+    <Compile Include="SlidingTiles\SlidingTilesProblem.cs" />
+    <Compile Include="SlidingTiles\SlidingTilesState.cs" />
+    <Compile Include="TSP\City.cs" />
+    <Compile Include="TSP\RandomEdgesExpander.cs" />
+    <Compile Include="TSP\TravelingSalesPersonAction.cs" />
+    <Compile Include="TSP\TravelingSalespersonProblem.cs" />
+    <Compile Include="TSP\TspFitnessFunction.cs" />
+    <Compile Include="TSP\TspGeneticRepresentation.cs" />
+    <Compile Include="TSP\TSPMEtric.cs" />
+    <Compile Include="TSP\TspMstHeuristic.cs" />
+    <Compile Include="TSP\TSPState.cs" />
+    <Compile Include="Vaccum\Grid\CellState.cs" />
+    <Compile Include="Vaccum\Grid\GridRandomVacuumAgent.cs" />
+    <Compile Include="Vaccum\Grid\GridRandomVacuumState.cs" />
+    <Compile Include="Vaccum\Grid\GridVacuumEnviroment.cs" />
+    <Compile Include="Vaccum\Grid\GridVacuumModelAgent.cs" />
+    <Compile Include="Vaccum\Grid\GridVacuumObservableState.cs" />
+    <Compile Include="Vaccum\Grid\GridVacuumPerception.cs" />
+    <Compile Include="Vaccum\IVacuumEnviroment.cs" />
+    <Compile Include="Vaccum\Simple\SimpleReflexVacuumAgent.cs" />
+    <Compile Include="Vaccum\Simple\SimpleStateLessReflexVacuumAgent.cs" />
+    <Compile Include="Vaccum\Simple\SimpleVacuumEnviroment.cs" />
+    <Compile Include="Vaccum\Simple\SimpleVacuumPerception.cs" />
+    <Compile Include="Vaccum\VacuumActions.cs" />
+    <Compile Include="Vaccum\VacuumProblem.cs" />
+    <Compile Include="WebCrawl\WebCrawlProblem.cs" />
+    <Compile Include="Wells\WellsFitnessFunction.cs" />
+    <Compile Include="Wells\WellsGeneticRepresentation.cs" />
+    <Compile Include="Wells\WellsMetric.cs" />
+    <Compile Include="Wells\WellsProblem.cs" />
+    <Compile Include="Wells\WellsState.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aima\Aima.csproj">
+      <Project>{00e7f07a-f208-4008-9b70-9485851e0e23}</Project>
+      <Name>Aima</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

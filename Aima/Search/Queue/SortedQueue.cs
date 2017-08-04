@@ -7,7 +7,7 @@ namespace Aima.Search.Queue
     {
         private readonly IComparer<T> _comparer;
         private readonly List<T> _list;
-        
+
         public SortedQueue(IComparer<T> comparer)
         {
             _list = new List<T>();
@@ -54,7 +54,7 @@ namespace Aima.Search.Queue
         {
             foreach (var element in elements)
             {
-                this.Put(element);
+                Put(element);
             }
         }
 

@@ -3,7 +3,7 @@
 namespace Aima.Search.Methods.Genetic.MutationOperators
 {
     /// <summary>
-    /// Randomly swaps two elements in genome
+    ///     Randomly swaps two elements in genome
     /// </summary>
     /// <typeparam name="TAlphabet"></typeparam>
     public class RandomSwapMutationOperator<TAlphabet> : IMutationOperator<TAlphabet>

@@ -79,15 +79,15 @@ namespace Sample.Excersises.Search
                 _edges = edges;
             }
 
-            public IEnumerable<Tuple<IAction, RoboInnertState>> SuccessorFn(RoboInnertState state)
+            public IEnumerable<Aima.Utilities.Tuple<IAction, RoboInnertState>> SuccessorFn(RoboInnertState state)
             {
                 var p = _vertices[state.VertexId];
 
                 var successors = _edges.Where(e => e.A.Equals(p))
-                    .Select(e => new Tuple<IAction, RoboInnertState>(new MoveAction(e.B), new RoboInnertState(_vertices.IndexOf(e.B))))
+                    .Select(e => new Aima.Utilities.Tuple<IAction, RoboInnertState>(new MoveAction(e.B), new RoboInnertState(_vertices.IndexOf(e.B))))
                     .ToList();
                 successors.AddRange(_edges.Where(e => e.B.Equals(p))
-                    .Select(e => new Tuple<IAction, RoboInnertState>(new MoveAction(e.A), new RoboInnertState(_vertices.IndexOf(e.A))))
+                    .Select(e => new Aima.Utilities.Tuple<IAction, RoboInnertState>(new MoveAction(e.A), new RoboInnertState(_vertices.IndexOf(e.A))))
                     .ToList());
 
                 return successors;

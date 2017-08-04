@@ -10,12 +10,6 @@ namespace Aima.Utilities
 
     public class Line : IShape
     {
-        public Vector2[] Vertices => new [] {A, B};
-        public Shape FromPadding(float padding)
-        {
-            throw new NotImplementedException();
-        }
-
         public Vector2 A;
         public Vector2 B;
 
@@ -32,6 +26,12 @@ namespace Aima.Utilities
         }
 
         public double Length => Math.Sqrt((A.X - B.X)*(A.X - B.X) + (A.Y - B.Y)*(A.Y - B.Y));
+        public Vector2[] Vertices => new[] {A, B};
+
+        public Shape FromPadding(float padding)
+        {
+            throw new NotImplementedException();
+        }
 
         public override string ToString()
         {
@@ -41,23 +41,12 @@ namespace Aima.Utilities
 
     public class Shape : IShape
     {
-        public Vector2[] Vertices { get; }
-
         public Shape(params Vector2[] vertices)
         {
             Vertices = vertices;
         }
 
-        public Vector2 GetCenter()
-        {
-            var sum = new Vector2();
-            for (var i = 0; i < Vertices.Length; i++)
-            {
-                sum = sum + Vertices[i];
-            }
-
-            return sum / Vertices.Length;
-        }
+        public Vector2[] Vertices { get; }
 
         public Shape FromPadding(float padding)
         {
@@ -69,9 +58,20 @@ namespace Aima.Utilities
             {
                 var v = vertices[i];
                 var d = (v - c).GetUnit();
-                vertices[i] = v + (v - c).GetUnit() * padding;
+                vertices[i] = v + (v - c).GetUnit()*padding;
             }
             return new Shape(vertices);
+        }
+
+        public Vector2 GetCenter()
+        {
+            var sum = new Vector2();
+            for (var i = 0; i < Vertices.Length; i++)
+            {
+                sum = sum + Vertices[i];
+            }
+
+            return sum/Vertices.Length;
         }
     }
 

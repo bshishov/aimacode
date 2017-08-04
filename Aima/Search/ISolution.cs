@@ -3,7 +3,7 @@ using Aima.AgentSystems;
 
 namespace Aima.Search
 {
-    public interface ISolution<out TState>
+    public interface ISolution<TState>
     {
         IEnumerable<IAction> Steps { get; }
         IEnumerable<TState> States { get; }

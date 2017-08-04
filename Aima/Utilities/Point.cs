@@ -31,7 +31,7 @@ namespace Aima.Utilities
             if (!(obj is Point))
                 return false;
 
-            var o = (Point)obj;
+            var o = (Point) obj;
             return (X == o.X) && (Y == o.Y);
         }
 
@@ -39,10 +39,10 @@ namespace Aima.Utilities
         {
             return new Point(c1.X + c2.X, c1.Y + c2.Y);
         }
-    
+
         public static Point operator *(Point c1, int c2)
         {
-            return new Point(c1.X * c2, c1.Y * c2);
+            return new Point(c1.X*c2, c1.Y*c2);
         }
 
         public static Point operator -(Point c1, Point c2)

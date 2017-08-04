@@ -8,11 +8,11 @@ namespace Aima.Search.Agents
     public abstract class SimpleProblemSolvingAgent<TState, TPerception> : IAgent<TPerception>
         where TPerception : IPerception
     {
-        private readonly ISearch<TState> _searchMethod;
-        private IProblem<TState> _problem;
         private readonly IQueue<IAction> _actions;
-        private TState _state;
+        private readonly ISearch<TState> _searchMethod;
         private TState _goal;
+        private IProblem<TState> _problem;
+        private TState _state;
 
         protected SimpleProblemSolvingAgent(ISearch<TState> searchMethod)
         {
@@ -23,7 +23,7 @@ namespace Aima.Search.Agents
         public IAction Execute(TPerception perception)
         {
             _state = UpdateState(_state, perception);
-           
+
             if (_actions.IsEmpty)
             {
                 _goal = FormulateGoal(_state);
@@ -39,7 +39,7 @@ namespace Aima.Search.Agents
                 _actions.Put(steps);
                 Console.WriteLine("[AGENT]\tFound solution in {0} steps", steps.Count);
             }
-            
+
             return _actions.Take();
         }
 

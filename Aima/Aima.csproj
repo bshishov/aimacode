@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Aima</RootNamespace>
     <AssemblyName>Aima</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -35,12 +35,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgentSystems\IAction.cs" />
@@ -57,20 +51,6 @@
     <Compile Include="ConstraintSatisfaction\AssigmentAction.cs" />
     <Compile Include="ConstraintSatisfaction\ConstraintClassificationProblem.cs" />
     <Compile Include="ConstraintSatisfaction\VarState.cs" />
-    <Compile Include="Domain\NQueens\AttackedQueens.cs" />
-    <Compile Include="Domain\NQueens\NonAttackedQueens.cs" />
-    <Compile Include="Domain\NQueens\NQueensAction.cs" />
-    <Compile Include="Domain\NQueens\NQueensProblem.cs" />
-    <Compile Include="Domain\NQueens\QueensGeneticRepresentation.cs" />
-    <Compile Include="Domain\NQueens\QueensPath.cs" />
-    <Compile Include="Domain\Obstacles\RobotState.cs" />
-    <Compile Include="Domain\Obstacles\StraightDistance.cs" />
-    <Compile Include="Domain\Wells\WellsFitnessFunction.cs" />
-    <Compile Include="Domain\Wells\WellsGeneticRepresentation.cs" />
-    <Compile Include="Domain\Wells\WellsMetric.cs" />
-    <Compile Include="Domain\Wells\WellsState.cs" />
-    <Compile Include="Domain\TSP\TspFitnessFunction.cs" />
-    <Compile Include="Domain\Wells\WellsProblem.cs" />
     <Compile Include="Search\Agents\LearningRealTimeAStarAgent.cs" />
     <Compile Include="Search\Agents\OnlineDFSAgent.cs" />
     <Compile Include="Search\ISearchStepNotifier.cs" />
@@ -85,35 +65,6 @@
     <Compile Include="Search\NodeExpanders\HeuristicNodeExpander.cs" />
     <Compile Include="Search\NodeExpanders\KDepthHeuristicNodeExpander.cs" />
     <Compile Include="Search\Methods\Genetic\CrossoverOperators\PmxOperator.cs" />
-    <Compile Include="Domain\TSP\TspGeneticRepresentation.cs" />
-    <Compile Include="Domain\TSP\TSPMEtric.cs" />
-    <Compile Include="Domain\Vaccum\Grid\CellState.cs" />
-    <Compile Include="Domain\Vaccum\Grid\GridRandomVacuumAgent.cs" />
-    <Compile Include="Domain\Vaccum\Grid\GridVacuumEnviroment.cs" />
-    <Compile Include="Domain\Vaccum\Grid\GridVacuumModelAgent.cs" />
-    <Compile Include="Domain\Vaccum\Grid\GridVacuumObservableState.cs" />
-    <Compile Include="Domain\Vaccum\Grid\GridVacuumPerception.cs" />
-    <Compile Include="Domain\Vaccum\Grid\GridRandomVacuumState.cs" />
-    <Compile Include="Domain\Vaccum\IVacuumEnviroment.cs" />
-    <Compile Include="Domain\Vaccum\Simple\SimpleStateLessReflexVacuumAgent.cs" />
-    <Compile Include="Domain\Vaccum\VacuumActions.cs" />
-    <Compile Include="Domain\Vaccum\Simple\SimpleVacuumEnviroment.cs" />
-    <Compile Include="Domain\River\RiverActions.cs" />
-    <Compile Include="Domain\River\RiverState.cs" />
-    <Compile Include="Domain\SlidingTiles\SlidingTilesActions.cs" />
-    <Compile Include="Domain\SlidingTiles\SlidingTilesHeuristics.cs" />
-    <Compile Include="Domain\SlidingTiles\SlidingTilesState.cs" />
-    <Compile Include="Domain\TSP\City.cs" />
-    <Compile Include="Domain\TSP\RandomEdgesExpander.cs" />
-    <Compile Include="Domain\TSP\TravelingSalesPersonAction.cs" />
-    <Compile Include="Domain\TSP\TspMstHeuristic.cs" />
-    <Compile Include="Domain\TSP\TSPState.cs" />
-    <Compile Include="Domain\Obstacles\PathFindingProblem.cs" />
-    <Compile Include="Domain\River\RiverProblem.cs" />
-    <Compile Include="Domain\SlidingTiles\SlidingTilesProblem.cs" />
-    <Compile Include="Domain\TSP\TravelingSalespersonProblem.cs" />
-    <Compile Include="Domain\Vaccum\VacuumProblem.cs" />
-    <Compile Include="Domain\WebCrawl\WebCrawlProblem.cs" />
     <Compile Include="Search\Agents\ErrorFixingSolvingAgent.cs" />
     <Compile Include="Search\HeuristicSearch.cs" />
     <Compile Include="Search\IHeuristic.cs" />
@@ -166,11 +117,10 @@
     <Compile Include="Utilities\GraphUtilities.cs" />
     <Compile Include="Utilities\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\Vaccum\Simple\SimpleReflexVacuumAgent.cs" />
     <Compile Include="AgentSystems\SimpleAction.cs" />
-    <Compile Include="Domain\Vaccum\Simple\SimpleVacuumPerception.cs" />
     <Compile Include="Utilities\Shape.cs" />
     <Compile Include="Utilities\GeometryUtilities.cs" />
+    <Compile Include="Utilities\Tuple.cs" />
     <Compile Include="Utilities\Vector2.cs" />
     <Compile Include="Utilities\WeightedGraph.cs" />
   </ItemGroup>

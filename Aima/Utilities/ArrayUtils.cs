@@ -11,8 +11,8 @@ namespace Aima.Utilities
             if (arr.GetLength(0) != other.GetLength(0) ||
                 arr.GetLength(1) != other.GetLength(1))
                 return false;
-            for (int i = 0; i < arr.GetLength(0); i++)
-                for (int j = 0; j < arr.GetLength(1); j++)
+            for (var i = 0; i < arr.GetLength(0); i++)
+                for (var j = 0; j < arr.GetLength(1); j++)
                     if (arr[i, j].CompareTo(other[i, j]) != 0)
                         return false;
             return true;
@@ -21,11 +21,11 @@ namespace Aima.Utilities
         public static int ComputeHash<T>(this T[,] array, int w, int h)
         {
             var hash = 17;
-            for (int i = 0; i < w; i++)
+            for (var i = 0; i < w; i++)
             {
                 for (var j = 0; j < h; j++)
                 {
-                    hash = hash * 31 + array[i, j].GetHashCode();
+                    hash = hash*31 + array[i, j].GetHashCode();
                 }
             }
             return hash;
@@ -34,11 +34,11 @@ namespace Aima.Utilities
         public static void Append<T1, T2>(this Dictionary<T1, List<T2>> dict, T1 key, T2 value)
         {
             if (!dict.ContainsKey(key))
-                dict.Add(key, new List<T2> { value });
+                dict.Add(key, new List<T2> {value});
             else
             {
                 if (dict[key] == null)
-                    dict[key] = new List<T2> { value };
+                    dict[key] = new List<T2> {value};
                 else
                     dict[key].Add(value);
             }
@@ -47,11 +47,11 @@ namespace Aima.Utilities
         public static void Prepend<T1, T2>(this Dictionary<T1, List<T2>> dict, T1 key, T2 value)
         {
             if (!dict.ContainsKey(key))
-                dict.Add(key, new List<T2> { value });
+                dict.Add(key, new List<T2> {value});
             else
             {
                 if (dict[key] == null)
-                    dict[key] = new List<T2> { value };
+                    dict[key] = new List<T2> {value};
                 else
                     dict[key].Insert(0, value);
             }

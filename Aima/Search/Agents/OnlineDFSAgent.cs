@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Aima.AgentSystems;
 using Aima.Utilities;
@@ -7,23 +6,23 @@ using Aima.Utilities;
 namespace Aima.Search.Agents
 {
     /// <summary>
-    /// Agent that search in online mode whic explores the enviroment using depth search
-    /// Can be applied only when each state can be backtracked
+    ///     Agent that search in online mode whic explores the enviroment using depth search
+    ///     Can be applied only when each state can be backtracked
     /// </summary>
     /// <typeparam name="TState"></typeparam>
     /// <typeparam name="TPerception"></typeparam>
-    public abstract class OnlineDFSAgent<TState, TPerception> :  IAgent<TPerception>
+    public abstract class OnlineDFSAgent<TState, TPerception> : IAgent<TPerception>
         where TPerception : IPerception
     {
-        private TState _oldState;
-        private IAction _oldAction;
         private readonly Dictionary<Tuple<IAction, TState>, TState> _result;
-        private readonly Dictionary<TState, List<IAction>> _unexplored;
         private readonly Dictionary<TState, List<TState>> _unbacktracked;
+        private readonly Dictionary<TState, List<IAction>> _unexplored;
+        private IAction _oldAction;
+        private TState _oldState;
 
         protected OnlineDFSAgent()
         {
-            _result = new Dictionary<Tuple<IAction, TState>, TState>();  
+            _result = new Dictionary<Tuple<IAction, TState>, TState>();
             _unexplored = new Dictionary<TState, List<IAction>>();
             _unbacktracked = new Dictionary<TState, List<TState>>();
         }
@@ -65,7 +64,7 @@ namespace Aima.Search.Agents
                 // Nothing to backtrack to
                 if (_unbacktracked.IsEmpty(state))
                     return null; // Nothing to do
-                
+
                 // get state to backtrack to
                 var backtrackTo = _unbacktracked.Pop(state);
 
@@ -86,17 +85,17 @@ namespace Aima.Search.Agents
         }
 
         /// <summary>
-        /// Identifies current state by given percept and old state
+        ///     Identifies current state by given percept and old state
         /// </summary>
         public abstract TState UpdateState(TState oldState, TPerception percept);
 
         /// <summary>
-        /// Checks whether we have reached the goal
+        ///     Checks whether we have reached the goal
         /// </summary>
         public abstract bool GoalTest(TState state);
 
         /// <summary>
-        /// Get actions available from the given state
+        ///     Get actions available from the given state
         /// </summary>
         public abstract IEnumerable<IAction> GetAvailableActions(TState state);
     }

@@ -6,12 +6,6 @@ namespace Aima.Utilities
 {
     public static class GraphUtilities
     {
-        public struct TreeSubset
-        {
-            public uint Parent;
-            public uint Rank;
-        }
-
         // A utility function to find set of an element i
         // (uses path compression technique)
         public static uint Find(TreeSubset[] subsets, uint i)
@@ -48,8 +42,9 @@ namespace Aima.Utilities
 
         public static WeightedGraph KruskalMST(WeightedGraph graph)
         {
-            if(graph.Oriented)
-                throw new InvalidOperationException("Creating of minimum spanning tree available only for non-oriented graphs");
+            if (graph.Oriented)
+                throw new InvalidOperationException(
+                    "Creating of minimum spanning tree available only for non-oriented graphs");
             var result = new WeightedGraph(graph.VerticesCount, false);
 
             // Create V subsets with single elements
@@ -59,7 +54,7 @@ namespace Aima.Utilities
 
             var edges = graph.AllEdges().ToArray();
             Array.Sort(edges);
-            
+
             foreach (var edge in edges)
             {
                 var x = Find(subsets, edge.From);
@@ -88,7 +83,7 @@ namespace Aima.Utilities
             var allAnotherEdges = another.AllEdges().ToList();
             foreach (var edge in graph.AllEdges())
             {
-                if(!allAnotherEdges.Contains(edge))
+                if (!allAnotherEdges.Contains(edge))
                     result.AddEdge(edge);
             }
             return result;
@@ -103,6 +98,12 @@ namespace Aima.Utilities
                     result.AddEdge(edge);
             }
             return result;
+        }
+
+        public struct TreeSubset
+        {
+            public uint Parent;
+            public uint Rank;
         }
     }
 }

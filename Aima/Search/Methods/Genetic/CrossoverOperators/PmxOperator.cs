@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Aima.Search.Methods.Genetic.CrossoverOperators
 {
     /// <summary>
-    /// Partially-mapped crossover operator
+    ///     Partially-mapped crossover operator
     /// </summary>
     public class PmxOperator<T> : ICrossoverOperator<T>
     {

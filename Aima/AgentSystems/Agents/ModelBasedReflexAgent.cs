@@ -6,11 +6,9 @@ namespace Aima.AgentSystems.Agents
     public abstract class ModelBasedReflexAgent<TPerception, TState> : IAgent<TPerception>
         where TPerception : IPerception
     {
-        protected List<IRule<TState>> Rules = new List<IRule<TState>>();
-        private TState _lastState;
         private IAction _lastAction;
-
-        public abstract TState UpdateState(TState lastState, IAction lastAction, TPerception percept);
+        private TState _lastState;
+        protected List<IRule<TState>> Rules = new List<IRule<TState>>();
 
         public IAction Execute(TPerception perception)
         {
@@ -20,6 +18,8 @@ namespace Aima.AgentSystems.Agents
             _lastAction = rule?.Action;
             return rule?.Action;
         }
+
+        public abstract TState UpdateState(TState lastState, IAction lastAction, TPerception percept);
 
         private IRule<TState> MatchRule(TState state)
         {

@@ -4,12 +4,12 @@ namespace Aima.ConstraintSatisfaction
 {
     public class AssigmentAction : IAction
     {
-        public string Name { get; }
-
         public AssigmentAction(string variable)
         {
             Name = variable;
         }
+
+        public string Name { get; }
     }
 
     public class AssigmentAction<T> : AssigmentAction

@@ -2,7 +2,7 @@
 {
     public class Individual<TAlphabet>
     {
-        public TAlphabet[] Genom;
         public double Fitness;
+        public TAlphabet[] Genom;
     }
 }

@@ -17,7 +17,8 @@ namespace Aima.Search.NodeExpanders
         {
         }
 
-        public override IEnumerable<HeuristicTreeNode<TState>> Expand(HeuristicTreeNode<TState> node, IProblem<TState> problem)
+        public override IEnumerable<HeuristicTreeNode<TState>> Expand(HeuristicTreeNode<TState> node,
+            IProblem<TState> problem)
         {
             var successors = problem.SuccessorFn(node.State);
             if (successors == null)

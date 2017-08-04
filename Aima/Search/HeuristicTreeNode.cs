@@ -11,7 +11,8 @@ namespace Aima.Search
             F = f;
         }
 
-        public HeuristicTreeNode(ITreeNode<TState> parent, TState state, double f, IAction action, double stepCost) : base(parent, state, action, stepCost)
+        public HeuristicTreeNode(ITreeNode<TState> parent, TState state, double f, IAction action, double stepCost)
+            : base(parent, state, action, stepCost)
         {
             F = f;
         }

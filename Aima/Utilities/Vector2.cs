@@ -26,7 +26,12 @@ namespace Aima.Utilities
             Y = y;
         }
 
-        public float Length => (float)Math.Sqrt(X * X + Y * Y);
+        public float Length => (float) Math.Sqrt(X*X + Y*Y);
+
+        public object Clone()
+        {
+            return new Vector2(X, Y);
+        }
 
         public void Normalize()
         {
@@ -35,17 +40,17 @@ namespace Aima.Utilities
             Y /= length;
         }
 
-        public float DotProduct(Vector2 p) 
-            => X * p.X + Y * p.Y;
+        public float DotProduct(Vector2 p)
+            => X*p.X + Y*p.Y;
 
         public float WedgeProduct(Vector2 p)
-            => X * p.Y - Y * p.X;
+            => X*p.Y - Y*p.X;
 
         public float CosBetween(Vector2 p)
-            => DotProduct(p) / (Length * p.Length);
+            => DotProduct(p)/(Length*p.Length);
 
         public float ProjectionOn(Vector2 b)
-            => Length * CosBetween(b);
+            => Length*CosBetween(b);
 
         public static Vector2 operator +(Vector2 c1, Vector2 c2)
             => new Vector2(c1.X + c2.X, c1.Y + c2.Y);
@@ -54,16 +59,16 @@ namespace Aima.Utilities
             => new Vector2(c1.X - c2.X, c1.Y - c2.Y);
 
         public static Vector2 operator *(Vector2 c1, Vector2 c2)
-            => new Vector2(c1.X * c2.X, c1.Y * c2.Y);
+            => new Vector2(c1.X*c2.X, c1.Y*c2.Y);
 
         public static Vector2 operator /(Vector2 c1, Vector2 c2)
-            => new Vector2(c1.X / c2.X, c1.Y / c2.Y);
+            => new Vector2(c1.X/c2.X, c1.Y/c2.Y);
 
         public static Vector2 operator *(Vector2 c1, float c2)
-            => new Vector2(c1.X * c2, c1.Y * c2);
+            => new Vector2(c1.X*c2, c1.Y*c2);
 
         public static Vector2 operator /(Vector2 c1, float c2)
-            => new Vector2(c1.X / c2, c1.Y / c2);
+            => new Vector2(c1.X/c2, c1.Y/c2);
 
         public static bool operator ==(Vector2 c1, Vector2 c2)
             => c1.Equals(c2);
@@ -72,15 +77,10 @@ namespace Aima.Utilities
             => !c1.Equals(c2);
 
         public Vector2 GetUnit()
-            => new Vector2(X / Length, Y / Length);
+            => new Vector2(X/Length, Y/Length);
 
         public Vector2 Copy()
             => new Vector2(X, Y);
-
-        public object Clone()
-        {
-            return new Vector2(X, Y);
-        }
 
         public bool Equals(Vector2 other)
         {
@@ -92,16 +92,16 @@ namespace Aima.Utilities
             if (!(obj is Vector2))
                 return false;
 
-            return Equals((Vector2)obj);
+            return Equals((Vector2) obj);
         }
 
         public override int GetHashCode() //from System.Double
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hash = 17;
-                hash = hash * 23 + X.GetHashCode();
-                hash = hash * 23 + Y.GetHashCode();
+                var hash = 17;
+                hash = hash*23 + X.GetHashCode();
+                hash = hash*23 + Y.GetHashCode();
                 return hash;
             }
         }

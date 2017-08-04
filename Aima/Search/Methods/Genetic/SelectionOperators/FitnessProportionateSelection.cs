@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Aima.Utilities;
 
 namespace Aima.Search.Methods.Genetic.SelectionOperators
 {
@@ -18,7 +19,8 @@ namespace Aima.Search.Methods.Genetic.SelectionOperators
             _rnd = new Random(seed);
         }
 
-        public IEnumerable<Tuple<Individual<TAlphabet>, Individual<TAlphabet>>> SelectPairs(List<Individual<TAlphabet>> population, IFitnessFunction<TState> fitnessFunction)
+        public IEnumerable<Tuple<Individual<TAlphabet>, Individual<TAlphabet>>> SelectPairs(
+            List<Individual<TAlphabet>> population, IFitnessFunction<TState> fitnessFunction)
         {
             var sumFitness = population.Sum(i => i.Fitness);
             for (var i = 0; i < population.Count; i++)
@@ -30,7 +32,7 @@ namespace Aima.Search.Methods.Genetic.SelectionOperators
                 {
                     foreach (var individual in population)
                     {
-                        var chance = individual.Fitness / sumFitness;
+                        var chance = individual.Fitness/sumFitness;
                         if (_rnd.NextDouble() < chance)
                         {
                             x = individual;
@@ -44,7 +46,7 @@ namespace Aima.Search.Methods.Genetic.SelectionOperators
                 {
                     foreach (var individual in population)
                     {
-                        var chance = individual.Fitness / sumFitness;
+                        var chance = individual.Fitness/sumFitness;
                         if (_rnd.NextDouble() < chance)
                         {
                             y = individual;
@@ -52,7 +54,7 @@ namespace Aima.Search.Methods.Genetic.SelectionOperators
                         }
                     }
                 }
-                yield return new Tuple<Individual<TAlphabet>, Individual<TAlphabet>>(x,y);
+                yield return new Tuple<Individual<TAlphabet>, Individual<TAlphabet>>(x, y);
             }
         }
     }

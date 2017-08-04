@@ -5,16 +5,17 @@ using Aima.Search.NodeExpanders;
 namespace Aima.Search.Methods.HillClimbing
 {
     /// <summary>
-    /// Will take successors with less heuristic value, 
-    /// the less heuristic is the higher the chance
-    /// Assuming that expander returns random successors
+    ///     Will take successors with less heuristic value,
+    ///     the less heuristic is the higher the chance
+    ///     Assuming that expander returns random successors
     /// </summary>
     /// <typeparam name="TState"></typeparam>
     public class StochasticHillClimbingStrategy<TState> : IHillClimbingStrategy<TState>
     {
         public event Action<ITreeNode<TState>> SearchNodeChanged;
 
-        public HeuristicTreeNode<TState> Climb(HeuristicTreeNode<TState> initial, IProblem<TState> problem, HeuristicNodeExpander<TState> expander)
+        public HeuristicTreeNode<TState> Climb(HeuristicTreeNode<TState> initial, IProblem<TState> problem,
+            HeuristicNodeExpander<TState> expander)
         {
             var rnd = new Random();
             var current = initial;
@@ -38,7 +39,7 @@ namespace Aima.Search.Methods.HillClimbing
                     foreach (var n in goodNeighbors)
                     {
                         // the less heuristic is the higher is the chance
-                        if (rnd.NextDouble() < 1.0 - (n.F / sumHeuristic))
+                        if (rnd.NextDouble() < 1.0 - n.F/sumHeuristic)
                         {
                             neighbor = n;
                             break;

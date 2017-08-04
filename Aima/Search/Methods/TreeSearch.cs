@@ -1,5 +1,4 @@
 using System;
-using Aima.AgentSystems;
 using Aima.Search.Queue;
 
 namespace Aima.Search.Methods
@@ -24,9 +23,9 @@ namespace Aima.Search.Methods
                 // Notidy active node change
                 SearchNodeChanged?.Invoke(node);
 
-                if(problem.GoalTest(node.State))
+                if (problem.GoalTest(node.State))
                     return new Solution<TState>(node);
-                
+
                 frontier.Put(SearchUtilities.Expand(node, problem));
             }
         }

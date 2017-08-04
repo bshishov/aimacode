@@ -113,6 +113,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aima.Domain\Aima.Domain.csproj">
+      <Project>{585ed353-a49b-448f-94a9-c350490e4afa}</Project>
+      <Name>Aima.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Aima\Aima.csproj">
       <Project>{00e7f07a-f208-4008-9b70-9485851e0e23}</Project>
       <Name>Aima</Name>

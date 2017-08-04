@@ -5,14 +5,15 @@ using Aima.Utilities;
 namespace Aima.Search.Methods.HillClimbing
 {
     /// <summary>
-    /// Just takes a successor with minimal heuristic value
+    ///     Just takes a successor with minimal heuristic value
     /// </summary>
     /// <typeparam name="TState"></typeparam>
     public class SteepestAscentHillClimbingStrategy<TState> : IHillClimbingStrategy<TState>
     {
         public event Action<ITreeNode<TState>> SearchNodeChanged;
 
-        public HeuristicTreeNode<TState> Climb(HeuristicTreeNode<TState> initial, IProblem<TState> problem, HeuristicNodeExpander<TState> expander)
+        public HeuristicTreeNode<TState> Climb(HeuristicTreeNode<TState> initial, IProblem<TState> problem,
+            HeuristicNodeExpander<TState> expander)
         {
             var current = initial;
             while (true)

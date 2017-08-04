@@ -3,12 +3,10 @@ using System.Linq;
 
 namespace Aima.AgentSystems.Agents
 {
-    public abstract class SimpleReflexAgent<TPerception, TState> : IAgent<TPerception> 
+    public abstract class SimpleReflexAgent<TPerception, TState> : IAgent<TPerception>
         where TPerception : IPerception
     {
         protected List<IRule<TState>> Rules = new List<IRule<TState>>();
-
-        public abstract TState InterpretInput(TPerception percept);
 
         public IAction Execute(TPerception perception)
         {
@@ -16,6 +14,8 @@ namespace Aima.AgentSystems.Agents
             var rule = MatchRule(state);
             return rule.Action;
         }
+
+        public abstract TState InterpretInput(TPerception percept);
 
         private IRule<TState> MatchRule(TState state)
         {

@@ -1,6 +1,6 @@
 namespace Aima.Search.Methods.Genetic
 {
-    public interface IGeneticRepresentation<TAlphabet,TState>
+    public interface IGeneticRepresentation<TAlphabet, TState>
     {
         TAlphabet[] RandomGenome();
         TState FromGenome(TAlphabet[] genome);

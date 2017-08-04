@@ -5,17 +5,18 @@ namespace Aima.Search.Queue
     public class LIFOQueue<T> : LinkedList<T>, IQueue<T>
     {
         public bool IsEmpty => Count == 0;
-        public new T First => ((LinkedList<T>)this).Last.Value;
+        public new T First => Last.Value;
+
         public T Take()
         {
-            var result = ((LinkedList<T>)this).Last.Value;
-            this.RemoveLast();
+            var result = Last.Value;
+            RemoveLast();
             return result;
         }
 
         public void Put(T element)
         {
-            this.AddLast(element);
+            AddLast(element);
         }
 
         public void Put(IEnumerable<T> elements)
@@ -28,7 +29,7 @@ namespace Aima.Search.Queue
 
         public new void Remove(T element)
         {
-            ((LinkedList<T>)this).Remove(element);
+            ((LinkedList<T>) this).Remove(element);
         }
     }
 }

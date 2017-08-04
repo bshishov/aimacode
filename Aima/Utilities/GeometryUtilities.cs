@@ -4,10 +4,11 @@ namespace Aima.Utilities
 {
     public static class GeometryUtilities
     {
-        public static void CreateGraph(IEnumerable<Vector2> initialVertices, IEnumerable<IShape> obstacles, out List<Vector2> verticesOut, out List<Line> edgesOut, float padding = 5f)
+        public static void CreateGraph(IEnumerable<Vector2> initialVertices, IEnumerable<IShape> obstacles,
+            out List<Vector2> verticesOut, out List<Line> edgesOut, float padding = 5f)
         {
             var edges = new List<Line>();
-            var vertices = new List<Vector2> (initialVertices);
+            var vertices = new List<Vector2>(initialVertices);
 
             foreach (var shape in obstacles)
             {
@@ -16,7 +17,7 @@ namespace Aima.Utilities
 
             for (var i = 0; i < vertices.Count - 1; i++)
             {
-                for (var j = i+1; j < vertices.Count; j++)
+                for (var j = i + 1; j < vertices.Count; j++)
                 {
                     var line = new Line(vertices[i], vertices[j]);
                     var intersects = false;
@@ -27,7 +28,7 @@ namespace Aima.Utilities
                             intersects = true;
                     }
 
-                    if(!intersects)
+                    if (!intersects)
                         edges.Add(line);
                 }
             }
@@ -57,7 +58,7 @@ namespace Aima.Utilities
 
             var p = (r1 >= 0 && r2 <= 0) || (r1 <= 0 && r2 >= 0);
             var m = (r3 >= 0 && r4 <= 0) || (r3 <= 0 && r4 >= 0);
-            
+
             return m && p;
         }
     }

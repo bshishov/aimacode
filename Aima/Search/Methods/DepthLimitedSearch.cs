@@ -1,5 +1,4 @@
 using System;
-using Aima.AgentSystems;
 
 namespace Aima.Search.Methods
 {
@@ -16,6 +15,8 @@ namespace Aima.Search.Methods
         {
             return Search(new TreeNode<TState>(problem.InitialState), problem, _limit);
         }
+
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
 
         public ISolution<TState> Search(IProblem<TState> problem, TState state)
         {
@@ -60,7 +61,5 @@ namespace Aima.Search.Methods
 
             return null;
         }
-
-        public event Action<ITreeNode<TState>> SearchNodeChanged;
     }
 }

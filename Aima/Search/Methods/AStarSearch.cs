@@ -7,13 +7,12 @@ using Aima.Search.Queue;
 namespace Aima.Search.Methods
 {
     /// <summary>
-    /// A* search implementation with closed set (like GraphSearch)
+    ///     A* search implementation with closed set (like GraphSearch)
     /// </summary>
     /// <typeparam name="TState"></typeparam>
     public class AStarSearch<TState> : HeuristicSearch<TState>
     {
         public double Weight = 1.0;
-        public override event Action<ITreeNode<TState>> SearchNodeChanged;
 
         public AStarSearch(HeuristicNodeExpander<TState> expander) : base(expander)
         {
@@ -28,10 +27,13 @@ namespace Aima.Search.Methods
         {
         }
 
+        public override event Action<ITreeNode<TState>> SearchNodeChanged;
+
         public override ISolution<TState> Search(IProblem<TState> problem)
         {
             var openSet = new SortedQueue<HeuristicTreeNode<TState>>(new HeuristicComparer<TState>());
-            openSet.Put( new HeuristicTreeNode<TState>(problem.InitialState, Expander.ComputeHeuristic(problem.InitialState)));
+            openSet.Put(new HeuristicTreeNode<TState>(problem.InitialState,
+                Expander.ComputeHeuristic(problem.InitialState)));
             var closedSet = new HashSet<TState>();
 
             while (true)
@@ -53,7 +55,7 @@ namespace Aima.Search.Methods
                 {
                     // check whether node with this state is existed
                     var existed = openSet.FirstOrDefault(s => s.State.Equals(successor.State));
-                    
+
                     // if node is explored and not existed
                     if (!closedSet.Contains(successor.State) && existed == null)
                         openSet.Put(successor);

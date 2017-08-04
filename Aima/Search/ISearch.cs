@@ -1,5 +1,3 @@
-using Aima.AgentSystems;
-
 namespace Aima.Search
 {
     public interface ISearch<TState> : ISearchNodeNotifier<TState>

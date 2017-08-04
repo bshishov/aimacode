@@ -6,14 +6,12 @@ using Aima.Utilities;
 namespace Aima.Search.Methods.HillClimbing
 {
     /// <summary>
-    /// While climbing computes heuristic not of 1-depth expanded values, but k-depth using DepthLimitedSearch method
-    /// This helps avoid local minimums of basic HillClimbing
+    ///     While climbing computes heuristic not of 1-depth expanded values, but k-depth using DepthLimitedSearch method
+    ///     This helps avoid local minimums of basic HillClimbing
     /// </summary>
     /// <typeparam name="TState"></typeparam>
     public class KDepthHillClimbingStrategy<TState> : IHillClimbingStrategy<TState>
     {
-        public event Action<ITreeNode<TState>> SearchNodeChanged;
-
         private readonly DepthLimitedSearch<TState> _dls;
 
         public KDepthHillClimbingStrategy(int k)
@@ -21,7 +19,10 @@ namespace Aima.Search.Methods.HillClimbing
             _dls = new DepthLimitedSearch<TState>(k);
         }
 
-        public HeuristicTreeNode<TState> Climb(HeuristicTreeNode<TState> initial, IProblem<TState> problem, HeuristicNodeExpander<TState> expander)
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
+
+        public HeuristicTreeNode<TState> Climb(HeuristicTreeNode<TState> initial, IProblem<TState> problem,
+            HeuristicNodeExpander<TState> expander)
         {
             var current = initial;
             while (true)
@@ -32,7 +33,8 @@ namespace Aima.Search.Methods.HillClimbing
                 foreach (var node in neighbors)
                 {
                     var localSolution = _dls.Search(problem, node.State);
-                    node.F = localSolution.ParentNode.PathCost + expander.ComputeHeuristic(localSolution.ParentNode.State);
+                    node.F = localSolution.ParentNode.PathCost +
+                             expander.ComputeHeuristic(localSolution.ParentNode.State);
                 }
 
                 // get neighbor with lowest computed heuristic

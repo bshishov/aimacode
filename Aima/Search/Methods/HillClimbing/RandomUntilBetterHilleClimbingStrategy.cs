@@ -5,14 +5,12 @@ using Aima.Utilities;
 namespace Aima.Search.Methods.HillClimbing
 {
     /// <summary>
-    /// Assuming that expander returns random successors, 
-    /// strategy is to try find better ones 
+    ///     Assuming that expander returns random successors,
+    ///     strategy is to try find better ones
     /// </summary>
     /// <typeparam name="TState"></typeparam>
     public class RandomUntilBetterHilleClimbingStrategy<TState> : IHillClimbingStrategy<TState>
     {
-        public event Action<ITreeNode<TState>> SearchNodeChanged;
-
         private readonly int _maxTries;
 
         public RandomUntilBetterHilleClimbingStrategy(int maxTries = 10)
@@ -20,7 +18,10 @@ namespace Aima.Search.Methods.HillClimbing
             _maxTries = maxTries;
         }
 
-        public HeuristicTreeNode<TState> Climb(HeuristicTreeNode<TState> initial, IProblem<TState> problem, HeuristicNodeExpander<TState> expander)
+        public event Action<ITreeNode<TState>> SearchNodeChanged;
+
+        public HeuristicTreeNode<TState> Climb(HeuristicTreeNode<TState> initial, IProblem<TState> problem,
+            HeuristicNodeExpander<TState> expander)
         {
             var current = initial;
             var tryN = 0;
@@ -44,7 +45,7 @@ namespace Aima.Search.Methods.HillClimbing
                     tryN = 0;
                 }
             }
-        
+
             return current;
         }
     }

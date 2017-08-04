@@ -8,14 +8,14 @@ namespace Aima.Search.Agents
     public abstract class ErrorFixingSolvingAgent<TState, TPerception> : IAgent<TPerception>
         where TPerception : IPerception
     {
-        private readonly ISearch<TState> _searchMethod;
-        private IProblem<TState> _problem;
         private readonly IQueue<IAction> _actions;
         private readonly IQueue<TState> _expectedStates;
-        private TState _state;
-        private TState _lastExpectedState;
+        private readonly ISearch<TState> _searchMethod;
         private TState _goal;
-        
+        private TState _lastExpectedState;
+        private IProblem<TState> _problem;
+        private TState _state;
+
 
         protected ErrorFixingSolvingAgent(ISearch<TState> searchMethod)
         {

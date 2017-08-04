@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Aima.AgentSystems;
 using Aima.Search;
+using Aima.Utilities;
 
 namespace Aima.ConstraintSatisfaction
 {
-    public abstract class ConstraintClassificationProblem<T> : IProblem<VarState<T>>        
+    public abstract class ConstraintClassificationProblem<T> : IProblem<VarState<T>>
     {
-        public VarState<T> InitialState { get; } = new VarState<T>();
-
         private readonly List<Tuple<string, IEnumerable<T>>> _scope;
 
         protected ConstraintClassificationProblem(IEnumerable<Tuple<string, IEnumerable<T>>> scope)
         {
             _scope = scope.ToList();
-        } 
+        }
+
+        public VarState<T> InitialState { get; } = new VarState<T>();
 
         public IEnumerable<Tuple<IAction, VarState<T>>> SuccessorFn(VarState<T> state)
         {
             Tuple<string, IEnumerable<T>> unassigned = null;
-            
+
             foreach (var tuple in _scope)
             {
                 if (state.Assigments.FirstOrDefault(a => a.Name.Equals(tuple.Item1)) == null)

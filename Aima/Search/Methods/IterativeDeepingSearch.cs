@@ -1,5 +1,4 @@
 using System;
-using Aima.AgentSystems;
 
 namespace Aima.Search.Methods
 {

@@ -2,12 +2,12 @@
 {
     public class SimpleAction : IAction
     {
-        public string Name { get; }
-
         public SimpleAction(string name)
         {
             Name = name;
         }
+
+        public string Name { get; }
 
         public override bool Equals(object obj)
         {

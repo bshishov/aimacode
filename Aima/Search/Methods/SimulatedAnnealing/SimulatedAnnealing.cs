@@ -6,17 +6,15 @@ namespace Aima.Search.Methods.SimulatedAnnealing
 {
     public class SimulatedAnnealing<TState> : HeuristicSearch<TState>
     {
-        public override event Action<ITreeNode<TState>> SearchNodeChanged;
-
         private readonly IAnnealingSchedule _schedule;
 
-        public SimulatedAnnealing(IAnnealingSchedule schedule, HeuristicNodeExpander<TState> expander) 
+        public SimulatedAnnealing(IAnnealingSchedule schedule, HeuristicNodeExpander<TState> expander)
             : base(expander)
         {
             _schedule = schedule;
         }
 
-        public SimulatedAnnealing(IAnnealingSchedule schedule, IHeuristic<TState> heuristic) 
+        public SimulatedAnnealing(IAnnealingSchedule schedule, IHeuristic<TState> heuristic)
             : this(schedule, new DefaultHeuristicNodeExpander<TState>(heuristic))
         {
         }
@@ -27,26 +25,29 @@ namespace Aima.Search.Methods.SimulatedAnnealing
         }
 
         public SimulatedAnnealing(HeuristicNodeExpander<TState> expander)
-             : this(new DefaultAnnealingSchedule(), expander)
+            : this(new DefaultAnnealingSchedule(), expander)
         {
         }
 
         public SimulatedAnnealing(IHeuristic<TState> heuristic)
-             : this(new DefaultAnnealingSchedule(),
-                   new DefaultHeuristicNodeExpander<TState>(heuristic))
+            : this(new DefaultAnnealingSchedule(),
+                new DefaultHeuristicNodeExpander<TState>(heuristic))
         {
         }
 
         public SimulatedAnnealing(Func<TState, double> heuristic)
             : this(new DefaultAnnealingSchedule(),
-                  new DefaultHeuristicNodeExpander<TState>(heuristic))
+                new DefaultHeuristicNodeExpander<TState>(heuristic))
         {
         }
+
+        public override event Action<ITreeNode<TState>> SearchNodeChanged;
 
         public override ISolution<TState> Search(IProblem<TState> problem)
         {
             var rnd = new Random();
-            var current = new HeuristicTreeNode<TState>(problem.InitialState, Expander.ComputeHeuristic(problem.InitialState));
+            var current = new HeuristicTreeNode<TState>(problem.InitialState,
+                Expander.ComputeHeuristic(problem.InitialState));
 
             var time = 0;
             while (true)
@@ -54,10 +55,10 @@ namespace Aima.Search.Methods.SimulatedAnnealing
                 var temperature = _schedule.Temparature(time);
 
                 // Notify new state
-                this.SearchNodeChanged?.Invoke(current);
+                SearchNodeChanged?.Invoke(current);
 
                 // annealing end
-                if (temperature < Double.Epsilon)
+                if (temperature < double.Epsilon)
                     return new Solution<TState>(current);
 
                 // get random successor
@@ -69,7 +70,7 @@ namespace Aima.Search.Methods.SimulatedAnnealing
                 if (deltaE > 0)
                     current = next;
                 // with some probability accept worse state
-                else if(rnd.NextDouble() < Math.Exp(deltaE / temperature))
+                else if (rnd.NextDouble() < Math.Exp(deltaE/temperature))
                     current = next;
 
                 time++;

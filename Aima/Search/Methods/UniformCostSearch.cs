@@ -37,13 +37,13 @@ namespace Aima.Search.Methods
                 {
                     // check whether node with this state is existed
                     var existed = openSet.FirstOrDefault(s => s.State.Equals(successor.State));
-                    
+
                     // if node is explored and not existed
                     if (!closedSet.Contains(successor.State) && existed == null)
                         openSet.Put(successor);
                     // if node is existed in frontier and its more expensive that current node 
                     // than replace it
-                    else if(existed != null && existed.PathCost > successor.PathCost)
+                    else if (existed != null && existed.PathCost > successor.PathCost)
                     {
                         openSet.Remove(existed);
                         openSet.Put(successor);

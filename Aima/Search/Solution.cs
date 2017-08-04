@@ -5,8 +5,9 @@ namespace Aima.Search
 {
     public class Solution<TState> : ISolution<TState>
     {
-        private readonly List<IAction> _steps = new List<IAction>();
+        public static Solution<TState> CutOff = new Solution<TState>(null);
         private readonly List<TState> _states = new List<TState>();
+        private readonly List<IAction> _steps = new List<IAction>();
 
         public Solution(ITreeNode<TState> node)
         {
@@ -29,7 +30,5 @@ namespace Aima.Search
         public IEnumerable<IAction> Steps => _steps;
         public IEnumerable<TState> States => _states;
         public ITreeNode<TState> ParentNode { get; }
-
-        public static Solution<TState> CutOff = new Solution<TState>(null);
     }
 }

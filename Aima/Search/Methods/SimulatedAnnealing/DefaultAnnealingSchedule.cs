@@ -24,10 +24,10 @@ namespace Aima.Search.Methods.SimulatedAnnealing
         {
             if (time < _limit)
             {
-                var res = _k * Math.Exp((-1) * _lam * time);
+                var res = _k*Math.Exp(-1*_lam*time);
                 return res;
             }
-            
+
             return 0.0;
         }
     }
